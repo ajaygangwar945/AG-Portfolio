@@ -1,0 +1,179 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --bg-color: #020617;
+  --card-bg: rgba(15, 23, 42, 0.6);
+  --card-border: rgba(255, 255, 255, 0.08);
+  --primary-gradient: linear-gradient(135deg, #22d3ee 0%, #818cf8 100%);
+  --secondary-gradient: linear-gradient(135deg, rgba(34, 211, 238, 0.1) 0%, rgba(129, 140, 248, 0.1) 100%);
+  
+  /* Redesigned Text Colors */
+  --text-primary: #f1f5f9;      /* Bright slate-white */
+  --text-secondary: #94a3b8;    /* Muted slate */
+  --text-accent-cyan: #22d3ee;  /* Theme cyan */
+  --text-accent-violet: #a5b4fc; /* Soft violet */
+  --text-dim: #64748b;          /* Very muted */
+  
+  --accent-cyan: #22d3ee;
+  --accent-violet: #818cf8;
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+}
+
+body {
+  background-color: #020617;
+  background-image: 
+    radial-gradient(circle at 0% 0%, rgba(129, 140, 248, 0.15) 0%, transparent 35%),
+    radial-gradient(circle at 100% 0%, rgba(34, 211, 238, 0.15) 0%, transparent 35%),
+    radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 1) 0%, transparent 100%),
+    radial-gradient(circle at 15% 50%, rgba(129, 140, 248, 0.08) 0%, transparent 25%),
+    radial-gradient(circle at 85% 50%, rgba(34, 211, 238, 0.08) 0%, transparent 25%);
+  background-attachment: fixed;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.container {
+  width: 90%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Utilities */
+.gradient-text {
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+}
+
+.glass-card {
+  background: var(--card-bg);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--card-border);
+  border-radius: 1.5rem;
+  transition: var(--transition-smooth);
+}
+
+.glass-card:hover {
+  border-color: rgba(34, 211, 238, 0.3);
+  box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.5);
+}
+
+.btn {
+  padding: 0.8rem 1.8rem;
+  border-radius: 0.75rem;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  transition: var(--transition-smooth);
+  border: none;
+}
+
+.btn-primary {
+  background: var(--primary-gradient);
+  color: #020617;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 0 25px rgba(34, 211, 238, 0.4);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--accent-cyan);
+  transform: translateY(-3px);
+}
+
+/* Brand Buttons */
+.btn-github {
+  background: rgba(15, 23, 42, 0.6);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.btn-github:hover {
+  background: rgba(30, 41, 59, 0.8);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+  transform: translateY(-3px) scale(1.02);
+}
+
+.btn-linkedin {
+  background: rgba(0, 119, 181, 0.2);
+  color: white;
+  border: 1px solid rgba(0, 119, 181, 0.3);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.btn-linkedin:hover {
+  background: rgba(0, 119, 181, 0.4);
+  border-color: #0077b5;
+  box-shadow: 0 0 30px rgba(0, 119, 181, 0.4);
+  transform: translateY(-3px) scale(1.02);
+}
+
+.btn-contact {
+  background: linear-gradient(135deg, #818cf8 0%, #f43f5e 100%);
+  color: white;
+  font-weight: 700;
+  box-shadow: 0 4px 15px rgba(244, 63, 94, 0.2);
+}
+
+.btn-contact:hover {
+  box-shadow: 0 0 30px rgba(244, 63, 94, 0.5);
+  transform: translateY(-3px) scale(1.02);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
