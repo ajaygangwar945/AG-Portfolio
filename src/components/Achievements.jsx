@@ -10,8 +10,9 @@ const AchievementCard = ({ title, award, date, icon: Icon, color }) => (
     viewport={{ once: true }}
     padding="1.5rem"
     accentColor={color}
+    notchedBorderWidth={1}
     style={{ 
-      borderTop: `4px solid ${color}`,
+      borderTop: `1px solid ${color}`,
       display: 'flex',
       flexDirection: 'column',
       gap: '1rem'
@@ -21,13 +22,13 @@ const AchievementCard = ({ title, award, date, icon: Icon, color }) => (
       <div style={{ 
         width: '40px', 
         height: '40px', 
-        background: `${color}22`, 
+        background: `var(--skills-accent)22`, 
         display: 'flex', 
         alignItems: 'center', 
         justifyContent: 'center',
-        border: `1px solid ${color}`
+        border: `1px solid var(--skills-accent)`
       }}>
-        <Icon size={20} color={color} />
+        <Icon size={20} color="var(--skills-accent)" />
       </div>
       <span style={{ fontSize: '0.7rem', color: 'var(--text-dim)', fontWeight: '700', fontFamily: 'var(--font-body)' }}>{date}</span>
     </div>
@@ -46,14 +47,14 @@ const Achievements = () => {
       award: "Achieved 2nd place among 1,000+ participants and won a $300 prize for a high-impact blockchain project.",
       date: "JUN 2025",
       icon: Trophy,
-      color: "#f59e0b"
+      color: "var(--achievements-accent)"
     },
     {
       title: "AI in Web Development Challenge",
       award: "Secured 2nd Rank for developing an AI-driven language learning platform using Python.",
       date: "MAY 2024",
       icon: Award,
-      color: "#10b981"
+      color: "var(--achievements-accent)"
     }
   ];
 

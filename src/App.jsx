@@ -25,8 +25,8 @@ const HomePage = ({ theme, toggleTheme, terminalOpen, setTerminalOpen }) => (
       <Skills />
       <Projects />
       <Certificates />
-      <Education />
       <Achievements />
+      <Education />
       <Resume />
       <Contact />
     </main>

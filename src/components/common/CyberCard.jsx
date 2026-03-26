@@ -9,6 +9,7 @@ const CyberCard = ({
   style = {},
   notchedSize = 20,
   notchedOffset = 10,
+  notchedBorderWidth = 2,
   ...motionProps 
 }) => {
   return (
@@ -29,8 +30,8 @@ const CyberCard = ({
       {...motionProps}
     >
       {/* HUD Corner Accents */}
-      <div style={{ position: 'absolute', top: `${notchedOffset}px`, left: `${notchedOffset}px`, width: `${notchedSize}px`, height: `${notchedSize}px`, borderTop: `2px solid ${accentColor}`, borderLeft: `2px solid ${accentColor}` }} />
-      <div style={{ position: 'absolute', bottom: `${notchedOffset}px`, right: `${notchedOffset}px`, width: `${notchedSize}px`, height: `${notchedSize}px`, borderBottom: `2px solid ${accentColor}`, borderRight: `2px solid ${accentColor}` }} />
+      <div style={{ position: 'absolute', top: `${notchedOffset}px`, left: `${notchedOffset}px`, width: `${notchedSize}px`, height: `${notchedSize}px`, borderTop: `${notchedBorderWidth}px solid ${accentColor}`, borderLeft: `${notchedBorderWidth}px solid ${accentColor}` }} />
+      <div style={{ position: 'absolute', bottom: `${notchedOffset}px`, right: `${notchedOffset}px`, width: `${notchedSize}px`, height: `${notchedSize}px`, borderBottom: `${notchedBorderWidth}px solid ${accentColor}`, borderRight: `${notchedBorderWidth}px solid ${accentColor}` }} />
       
       {children}
     </motion.div>

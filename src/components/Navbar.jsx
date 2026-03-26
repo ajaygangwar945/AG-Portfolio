@@ -13,8 +13,8 @@ const Navbar = ({ theme, toggleTheme }) => {
     { name: 'Skills', icon: Cpu, id: 'skills' },
     { name: 'Projects', icon: Layers, id: 'projects' },
     { name: 'Certificates', icon: ShieldCheck, id: 'certificates' },
-    { name: 'Education', icon: GraduationCap, id: 'education' },
     { name: 'Achievements', icon: Award, id: 'achievements' },
+    { name: 'Education', icon: GraduationCap, id: 'education' },
     { name: 'Resume', icon: FileText, id: 'resume' },
     { name: 'Contact', icon: Mail, id: 'contact' },
   ], []);
