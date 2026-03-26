@@ -1,6 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
+const streams = [...Array(10)].map(() => ({
+  left: `${Math.random() * 100}%`,
+  duration: Math.random() * 10 + 10,
+  delay: Math.random() * 5
+}));
+
 const BackgroundElements = () => {
   return (
     <div style={{
@@ -11,75 +17,71 @@ const BackgroundElements = () => {
       height: '100%',
       zIndex: -1,
       overflow: 'hidden',
-      pointerEvents: 'none'
+      pointerEvents: 'none',
+      background: 'var(--bg-color)'
     }}>
-      {/* Floating Circles */}
+      {/* Vertical Data Streams */}
+      <div style={{ position: 'absolute', width: '100%', height: '100%', opacity: 'var(--bg-streams-opacity)' }}>
+        {streams.map((stream, i) => (
+          <motion.div
+            key={i}
+            initial={{ y: '-100%', left: stream.left }}
+            animate={{ y: '100%' }}
+            transition={{
+              duration: stream.duration,
+              repeat: Infinity,
+              ease: "linear",
+              delay: stream.delay
+            }}
+            style={{
+              position: 'absolute',
+              width: '1px',
+              height: '40%',
+              background: 'linear-gradient(to bottom, transparent, var(--primary-accent), transparent)'
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Large HUD Rings */}
       <motion.div
-        animate={{
-          x: [0, 100, 0],
-          y: [0, 50, 0],
-          scale: [1, 1.2, 1]
-        }}
-        transition={{
-          duration: 20,
-          repeat: Infinity,
-          ease: "linear"
-        }}
+        animate={{ rotate: 360 }}
+        transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
         style={{
           position: 'absolute',
-          top: '10%',
-          left: '5%',
-          width: '300px',
-          height: '300px',
-          background: 'rgba(34, 211, 238, 0.03)',
+          top: '-10%',
+          right: '-5%',
+          width: '500px',
+          height: '500px',
+          border: '1px dashed var(--secondary-accent)',
           borderRadius: '50%',
-          filter: 'blur(80px)',
-        }}
-      />
-      <motion.div
-        animate={{
-          x: [0, -100, 0],
-          y: [0, 100, 0],
-          scale: [1, 1.5, 1]
-        }}
-        transition={{
-          duration: 25,
-          repeat: Infinity,
-          ease: "linear"
-        }}
-        style={{
-          position: 'absolute',
-          bottom: '10%',
-          right: '5%',
-          width: '400px',
-          height: '400px',
-          background: 'rgba(129, 140, 248, 0.03)',
-          borderRadius: '50%',
-          filter: 'blur(100px)',
+          opacity: 'var(--bg-rings-opacity)'
         }}
       />
 
-      {/* Decorative SVG Grid/Dots */}
-      <svg style={{ position: 'absolute', width: '100%', height: '100%', opacity: 0.1 }}>
+      <motion.div
+        animate={{ rotate: -360 }}
+        transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+        style={{
+          position: 'absolute',
+          bottom: '-15%',
+          left: '-10%',
+          width: '600px',
+          height: '600px',
+          border: '1px solid var(--secondary-accent)',
+          borderRadius: '50%',
+          opacity: 'var(--bg-rings-opacity-inner)'
+        }}
+      />
+
+      {/* Hexagon Pattern Overlay */}
+      <svg style={{ position: 'absolute', width: '100%', height: '100%', opacity: 'var(--bg-hex-opacity)' }}>
         <defs>
-          <pattern id="dotPattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-            <circle cx="2" cy="2" r="1.5" fill="var(--accent-cyan)" />
+          <pattern id="hexagons" width="50" height="43.4" patternUnits="userSpaceOnUse" patternTransform="scale(2)">
+            <path d="M25 0 L50 14.4 L50 43.4 L25 57.8 L0 43.4 L0 14.4 Z" fill="none" stroke="var(--primary-accent)" strokeWidth="1" />
           </pattern>
         </defs>
-        <rect width="100%" height="100%" fill="url(#dotPattern)" />
-      </svg>
-      
-      {/* Animated SVG Path Lines */}
-      <svg style={{ position: 'absolute', width: '100%', height: '100%', opacity: 0.05 }}>
-        <motion.path
-          d="M -100 200 Q 400 500 900 200 T 1500 400"
-          stroke="var(--accent-violet)"
-          strokeWidth="2"
-          fill="none"
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={{ pathLength: 1, opacity: 1 }}
-          transition={{ duration: 3, repeat: Infinity, repeatType: "reverse" }}
-        />
+        <rect width="100%" height="100%" fill="url(#hexagons)" />
       </svg>
     </div>
   );

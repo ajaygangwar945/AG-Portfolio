@@ -1,296 +1,233 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Github, ExternalLink, Activity, ScanLine, Heart } from 'lucide-react';
+import { Github, ExternalLink, Activity, ScanLine, Heart, Box, Layers, Terminal, Globe, AppWindow, Cpu, Database, ShieldAlert, CloudRain, Scale, Map } from 'lucide-react';
+import CyberCard from './common/CyberCard';
+import { allProjects } from '../data/projectsData';
 
-// Import project images
-import projectAyush from '../assets/project-ayush.png';
-import projectAts from '../assets/project-ats.png';
-import projectPet from '../assets/project-pet.png';
-
-const ProjectCard = ({ title, description, tech, github, live, icon: Icon, color, image, category, featured }) => (
-  <motion.div
+export const ProjectCard = ({ title, description, tech, github, live, icon: Icon, image, color }) => (
+  <CyberCard
     layout
     initial={{ opacity: 0, scale: 0.95 }}
-    animate={{ opacity: 1, scale: 1 }}
-    exit={{ opacity: 0, scale: 0.95 }}
-    whileHover={{ y: -10 }}
-    className="glass-card"
+    whileInView={{ opacity: 1, scale: 1 }}
+    viewport={{ once: true }}
+    padding="0"
+    accentColor={color || "var(--projects-accent)"}
     style={{
       overflow: 'hidden',
       height: '100%',
       display: 'flex',
       flexDirection: 'column',
-      background: 'rgba(15, 23, 42, 0.3)',
-      border: '1px solid rgba(255, 255, 255, 0.05)',
     }}
   >
-    {/* Image Container */}
-    <div style={{ position: 'relative', height: '220px', overflow: 'hidden' }}>
-      <img
-        src={image}
-        alt={title}
-        style={{
+    {/* Image / Schematic Header */}
+    <div style={{ position: 'relative', height: '200px', overflow: 'hidden', borderBottom: `1px solid ${color || 'var(--card-border)'}` }}>
+      {image ? (
+        <img
+          src={image}
+          alt={title}
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover'
+          }}
+        />
+      ) : (
+        <div style={{
           width: '100%',
           height: '100%',
-          objectFit: 'cover',
-          transition: 'transform 0.5s ease'
-        }}
-        onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.1)'}
-        onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
-      />
-
-      {/* Top Banner for Featured */}
-      {featured && (
-        <div style={{
-          position: 'absolute',
-          top: '1rem',
-          right: '1rem',
-          background: 'var(--primary-gradient)',
-          color: '#020617',
-          padding: '0.3rem 0.8rem',
-          borderRadius: '2rem',
-          fontSize: '0.75rem',
-          fontWeight: '800',
-          boxShadow: '0 4px 12px rgba(34, 211, 238, 0.3)',
-          zIndex: 2
+          background: 'radial-gradient(circle at center, var(--card-bg) 0%, #000 100%)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          opacity: 0.7
         }}>
-          Featured
+          <Icon size={64} color={color || "var(--projects-accent)"} opacity={0.3} />
         </div>
       )}
+      <div style={{ 
+        position: 'absolute', 
+        inset: 0, 
+        background: 'linear-gradient(to bottom, transparent 60%, var(--bg-color) 100%)',
+        zIndex: 1
+      }} />
+      
+      {/* Scanline Overlay */}
+      <div className="scanlines" style={{ position: 'absolute', inset: 0, opacity: 0.1, zIndex: 2 }} />
 
-      {/* Overlaid Category Badges */}
-      <div style={{
-        position: 'absolute',
-        bottom: '1rem',
-        left: '1rem',
-        display: 'flex',
-        gap: '0.5rem',
-        zIndex: 2
-      }}>
-        {category.split(',').map((cat, i) => (cat.trim() && (
-          <span key={i} style={{
-            background: 'rgba(15, 23, 42, 0.8)',
-            backdropFilter: 'blur(8px)',
-            color: 'white',
-            padding: '0.3rem 0.8rem',
-            borderRadius: '0.5rem',
-            fontSize: '0.7rem',
-            fontWeight: '600',
-            border: '1px solid rgba(255, 255, 255, 0.1)'
-          }}>
-            {cat.trim()}
-          </span>
-        )))}
-      </div>
+      {/* Featured Badge */}
+
+
+
     </div>
 
     {/* Content */}
     <div style={{ padding: '1.5rem', flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.25rem' }}>
-        <div style={{
-          width: '44px',
-          height: '44px',
-          display: 'grid',
-          placeItems: 'center',
-          borderRadius: '1rem',
-          background: `${color}15`,
-          border: `1px solid ${color}30`,
-          flexShrink: 0
-        }}>
-          <Icon size={22} color={color} strokeWidth={2.5} />
-        </div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
+        <Icon size={16} color={color || "var(--projects-accent)"} />
         <h3 style={{
-          fontSize: '1.35rem',
-          color: 'var(--text-primary)',
-          fontWeight: '700',
-          lineHeight: '1.2',
-          margin: 0
+          fontSize: '1.2rem',
+          color: color || 'var(--text-secondary)',
+          fontFamily: 'var(--font-heading)',
+          margin: 0,
+          opacity: 0.95
         }}>{title}</h3>
       </div>
 
       <p style={{
-        color: 'var(--text-secondary)',
-        fontSize: '0.9rem',
+        color: color || 'var(--text-dim)',
+        opacity: 0.8,
+        fontSize: '0.85rem',
         lineHeight: '1.6',
         marginBottom: '1.5rem',
-        flexGrow: 1
+        flexGrow: 1,
+        fontFamily: 'var(--font-body)'
       }}>
-        {description}
+        &gt; {description}
       </p>
 
       {/* Tech Stack */}
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.6rem', marginBottom: '1.5rem' }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem', marginBottom: '1.5rem' }}>
         {tech.map((t) => (
-          <span key={t} style={{
-            fontSize: '0.7rem',
-            color: 'var(--text-accent-cyan)',
-            background: 'rgba(34, 211, 238, 0.05)',
-            border: '1px solid rgba(34, 211, 238, 0.2)',
-            padding: '0.3rem 0.8rem',
-            borderRadius: '2rem',
-            fontWeight: '600',
-            letterSpacing: '0.02em',
-            transition: 'all 0.3s ease'
-          }}>
-            {t}
-          </span>
+          <CyberCard 
+            key={t}
+            className="cyber-card-compact"
+            padding="0.25rem 0.61rem"
+            accentColor={color || 'var(--projects-accent)'}
+            notchedSize={4}
+            notchedOffset={2}
+            whileHover={{ scale: 1.05 }}
+            style={{
+              fontSize: '0.65rem',
+              color: color || 'var(--projects-accent)',
+              background: 'var(--badge-bg)',
+              border: `1px solid ${color || 'var(--projects-accent)'}`, 
+              opacity: 1,
+              fontWeight: '700',
+              fontFamily: 'var(--font-body)',
+              cursor: 'default',
+              display: 'inline-flex'
+            }}
+          >
+            {t.toUpperCase()}
+          </CyberCard>
         ))}
       </div>
 
       {/* Links */}
       <div style={{
         display: 'flex',
-        gap: '1.5rem',
-        paddingTop: '1.2rem',
-        borderTop: '1px solid rgba(255, 255, 255, 0.05)'
+        gap: '1rem',
+        paddingTop: '1rem',
+        borderTop: `1px solid ${color || 'var(--card-border)'}`
       }}>
-        <a href={github} target="_blank" rel="noopener noreferrer" style={{
-          color: 'var(--text-primary)',
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: '0.5rem',
-          fontSize: '0.9rem',
-          fontWeight: '600',
-          transition: 'color 0.3s ease',
-          lineHeight: '1'
-        }}
-          onMouseOver={(e) => e.currentTarget.style.color = 'var(--accent-cyan)'}
-          onMouseOut={(e) => e.currentTarget.style.color = 'var(--text-primary)'}>
-          <Github size={18} /> Code
+        <a href={github} target="_blank" rel="noopener noreferrer" className="btn btn-secondary" style={{ 
+          padding: '0.4rem 0.8rem', 
+          fontSize: '0.7rem', 
+          display: 'flex', 
+          alignItems: 'center', 
+          gap: '0.4rem',
+          borderColor: color || 'var(--projects-accent)',
+          color: color || 'var(--projects-accent)',
+          background: 'transparent'
+        }}>
+          <Github size={14} /> Source Code
         </a>
-        <a href={live} target="_blank" rel="noopener noreferrer" style={{
-          color: 'var(--text-primary)',
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: '0.5rem',
-          fontSize: '0.9rem',
-          fontWeight: '600',
-          transition: 'color 0.3s ease',
-          lineHeight: '1'
-        }}
-          onMouseOver={(e) => e.currentTarget.style.color = 'var(--accent-cyan)'}
-          onMouseOut={(e) => e.currentTarget.style.color = 'var(--text-primary)'}>
-          <ExternalLink size={18} /> Live Demo
-        </a>
+        {live && (
+          <a href={live} target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ 
+            padding: '0.4rem 0.8rem', 
+            fontSize: '0.7rem', 
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: '0.4rem',
+            background: color || 'var(--projects-accent)',
+            color: 'var(--bg-color)',
+            borderColor: 'transparent'
+          }}>
+            <ExternalLink size={14} /> Live Demo
+          </a>
+        )}
       </div>
     </div>
-  </motion.div>
+  </CyberCard>
 );
 
 const Projects = () => {
   const [activeTab, setActiveTab] = useState('All');
-  const categories = ['All', 'Full Stack', 'Frontend', 'Data Visualization', 'AI & Data'];
-
-  const allProjects = [
-    {
-      title: "Ayush Healthcare Platform",
-      description: "Platform integrating traditional Ayush systems with global standards (FHIR R4, ICD-11) for secure data exchange.",
-      tech: ["FastAPI", "React", "HL7 FHIR", "WHO API"],
-      github: "https://github.com/ajaygangwar945",
-      live: "https://ajay-gangwar-portfolio.netlify.app",
-      icon: Activity,
-      color: "#ef4444",
-      image: projectAyush,
-      category: "Full Stack, Data Visualization",
-      featured: true
-    },
-    {
-      title: "ATS Resume Score",
-      description: "AI-driven application using Google Gemini to analyze resumes and optimize alignment with job descriptions.",
-      tech: ["Python", "Streamlit", "Gemini AI", "NLP"],
-      github: "https://github.com/ajaygangwar945",
-      live: "https://ajay-gangwar-portfolio.netlify.app",
-      icon: ScanLine,
-      color: "#22d3ee",
-      image: projectAts,
-      category: "AI & Data",
-      featured: true
-    },
-    {
-      title: "Pet Adoption & Welfare",
-      description: "Developed a responsive platform to facilitate pet adoption and raise welfare awareness through interactive listings and community resources.",
-      tech: ["JavaScript", "CSS3", "Swiper.js", "Netlify"],
-      github: "https://github.com/ajaygangwar945",
-      live: "https://ajay-gangwar-portfolio.netlify.app",
-      icon: Heart,
-      color: "#f472b6",
-      image: projectPet,
-      category: "Frontend",
-      featured: false
-    }
-  ];
+  const categories = ['All', 'Full Stack', 'Frontend', 'Data Visualization', 'AI & Data', 'Cybersecurity'];
 
   const filteredProjects = activeTab === 'All'
-    ? allProjects
+    ? allProjects.slice(0, 6)
     : allProjects.filter(project => project.category.includes(activeTab));
 
   return (
-    <section id="projects" style={{ padding: '2rem 0 4rem' }}>
+    <section id="projects" style={{ padding: '6rem 0', minHeight: '800px' }}>
       <div className="container">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          style={{ textAlign: 'center', marginBottom: '4rem' }}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          style={{ marginBottom: '4rem' }}
         >
-          <h2 style={{ fontSize: '4rem', marginBottom: '1rem' }}>
-            Featured <span className="gradient-text">Projects</span>
-          </h2>
-          <p style={{
-            color: 'var(--text-secondary)',
-            fontSize: '1.1rem',
-            maxWidth: '650px',
-            margin: '0 auto 2.5rem',
-            lineHeight: '1.6'
-          }}>
-            A showcase of my work spanning healthcare interoperability, AI integrations, and responsive interfaces.
-          </p>
-          <div style={{ width: '80px', height: '6px', background: 'var(--primary-gradient)', margin: '0 auto 3rem', borderRadius: '10px' }}></div>
-
-          {/* Filters */}
-          <div style={{
-            display: 'flex',
-            justifyContent: 'center',
-            gap: '1rem',
-            marginBottom: '4rem',
-            flexWrap: 'wrap'
-          }}>
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActiveTab(cat)}
-                style={{
-                  background: activeTab === cat ? 'rgba(34, 211, 238, 0.1)' : 'rgba(255, 255, 255, 0.03)',
-                  border: `1px solid ${activeTab === cat ? 'var(--accent-cyan)' : 'rgba(255, 255, 255, 0.1)'}`,
-                  color: activeTab === cat ? 'var(--text-primary)' : 'var(--text-secondary)',
-                  padding: '0.6rem 1.5rem',
-                  borderRadius: '2rem',
-                  fontSize: '0.9rem',
-                  fontWeight: '600',
-                  cursor: 'pointer',
-                  transition: 'all 0.3s ease'
-                }}
-              >
-                {cat}
-              </button>
-            ))}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '0.5rem' }}>
+            <Layers size={24} color="var(--projects-accent)" />
+            <span style={{ fontSize: '0.8rem', color: 'var(--projects-accent)', fontWeight: '800', letterSpacing: '3px' }}>PROJECT ARCHIVE</span>
           </div>
+          <h2 style={{ fontSize: '3rem', marginBottom: '1rem', color: 'var(--text-secondary)', fontFamily: 'var(--font-heading)' }}>
+            Featured <span style={{ color: 'var(--projects-accent)' }}>Projects</span>
+          </h2>
+          <div style={{ width: '100%', height: '1px', background: 'var(--card-border)' }} />
         </motion.div>
 
-        <motion.div
-          layout
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
-            gap: '2.5rem'
-          }}
-        >
+        {/* Tab Navigation */}
+        <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '3rem', flexWrap: 'wrap' }}>
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setActiveTab(cat)}
+              style={{
+                background: 'transparent',
+                border: activeTab === cat ? '1px solid var(--projects-accent)' : '1px solid transparent',
+                color: activeTab === cat ? 'var(--projects-accent)' : 'var(--text-dim)',
+                fontSize: '0.65rem',
+                fontWeight: '800',
+                cursor: 'pointer',
+                padding: '0.4rem 1rem',
+                textTransform: 'uppercase',
+                letterSpacing: '1px',
+                fontFamily: 'var(--font-body)',
+                transition: 'all 0.3s ease'
+              }}
+            >
+              &gt; {cat}
+            </button>
+          ))}
+        </div>
+
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+          gap: '2rem'
+        }}>
           <AnimatePresence mode='popLayout'>
             {filteredProjects.map((project) => (
-              <ProjectCard key={project.title} {...project} />
+              <ProjectCard key={project.uid} {...project} />
             ))}
           </AnimatePresence>
-        </motion.div>
+        </div>
+
+        {activeTab === 'All' && allProjects.length > 6 && (
+          <div style={{ display: 'flex', justifyContent: 'center', marginTop: '4rem' }}>
+            <a href="/projects" className="btn btn-primary" style={{ 
+              padding: '0.8rem 2rem', 
+              fontSize: '0.8rem', 
+              letterSpacing: '2px',
+              background: 'var(--projects-accent)',
+              color: 'var(--bg-color)',
+              borderColor: 'transparent'
+            }}>
+              &gt; VIEW ALL PROJECTS
+            </a>
+          </div>
+        )}
       </div>
     </section>
   );

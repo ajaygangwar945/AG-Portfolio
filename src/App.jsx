@@ -1,39 +1,75 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
+import Certificates from './components/Certificates';
 import Education from './components/Education';
+import Achievements from './components/Achievements';
+import Resume from './components/Resume';
+import Contact from './components/Contact';
 import BackgroundElements from './components/BackgroundElements';
+import TerminalPortfolio from './components/TerminalPortfolio';
+import TerminalToggle from './components/TerminalToggle';
+import AllProjects from './components/AllProjects';
+
+const HomePage = ({ theme, toggleTheme, terminalOpen, setTerminalOpen }) => (
+  <>
+    <BackgroundElements />
+    <Navbar theme={theme} toggleTheme={toggleTheme} />
+    <main>
+      <Hero />
+      <About />
+      <Skills />
+      <Projects />
+      <Certificates />
+      <Education />
+      <Achievements />
+      <Resume />
+      <Contact />
+    </main>
+    <TerminalToggle onClick={() => setTerminalOpen(true)} />
+    {terminalOpen && (
+      <TerminalPortfolio onClose={() => setTerminalOpen(false)} />
+    )}
+  </>
+);
 
 function App() {
+  const [theme, setTheme] = useState(document.body.classList.contains('light-mode') ? 'light' : 'dark');
+  const [terminalOpen, setTerminalOpen] = useState(false);
+
+  const toggleTheme = () => {
+    const newTheme = theme === 'dark' ? 'light' : 'dark';
+    setTheme(newTheme);
+    if (newTheme === 'light') {
+      document.body.classList.add('light-mode');
+    } else {
+      document.body.classList.remove('light-mode');
+    }
+  };
+
   return (
-    <div className="app" style={{ scrollBehavior: 'smooth' }}>
-      <BackgroundElements />
-      <BackgroundElements />
-      <Navbar />
-      <main>
-        <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Education />
-      </main>
-      
-      {/* Footer / Contact Section */}
-      <footer style={{ padding: '6rem 0', borderTop: '1px solid rgba(255,255,255,0.05)', textAlign: 'center' }}>
-        <div className="container">
-          <h2 className="gradient-text" style={{ fontSize: '2rem', marginBottom: '1.5rem' }}>Let's Connect</h2>
-          <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem' }}>ajaygangwar945@gmail.com | +91-8283024392</p>
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem', color: 'var(--text-dim)', fontSize: '0.9rem' }}>
-            <span>© 2026 Ajay Gangwar</span>
-            <span>Made with React & Framer Motion</span>
-          </div>
-        </div>
-      </footer>
-    </div>
+    <Router>
+      <div className="app">
+        <Routes>
+          <Route path="/" element={
+            <HomePage 
+              theme={theme} 
+              toggleTheme={toggleTheme} 
+              terminalOpen={terminalOpen} 
+              setTerminalOpen={setTerminalOpen} 
+            />
+          } />
+          <Route path="/projects" element={<AllProjects />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
 export default App;
+
+

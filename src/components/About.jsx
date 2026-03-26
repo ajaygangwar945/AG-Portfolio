@@ -1,185 +1,154 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, GraduationCap, Briefcase, Monitor, BookOpen, Music, Heart, Sparkles, Rocket, Code2, Languages, Gamepad2 } from 'lucide-react';
+import { MapPin, GraduationCap, Briefcase, Heart, Sparkles, Rocket, Code2, Languages, BookOpen, Music, Gamepad2, Compass } from 'lucide-react';
+import CyberCard from './common/CyberCard';
 
-const Card = ({ title, icon: Icon, iconColor, children, className = "", style = {} }) => {
+const Card = ({ title, icon: Icon, iconColor, children, className = "", style = {}, ...framerProps }) => {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.6, type: 'spring', damping: 20 }}
-      className={`glass-card ${className}`}
+    <CyberCard
+      accentColor="var(--about-accent)"
+      padding="2rem"
+      className={className}
       style={{ 
-        padding: '2.5rem', 
-        textAlign: 'left', 
-        position: 'relative',
+        '--card-border': 'var(--about-accent-alpha)',
+        '--primary-accent': 'var(--about-accent)',
+        height: '100%',
         display: 'flex',
         flexDirection: 'column',
-        height: '100%',
         ...style
       }}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      {...framerProps}
     >
-      <div style={{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '4px',
-        background: `linear-gradient(90deg, transparent, ${iconColor}, transparent)`,
-        opacity: 0.3
-      }} />
-      
-      <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.5rem' }}>
         <div style={{ 
-          background: `rgba(${parseInt(iconColor.slice(1,3), 16)}, ${parseInt(iconColor.slice(3,5), 16)}, ${parseInt(iconColor.slice(5,7), 16)}, 0.1)`,
-          padding: '0.75rem',
-          borderRadius: '0.75rem',
+          padding: '0.5rem',
+          borderRadius: '12px',
+          backgroundColor: 'rgba(255, 255, 255, 0.03)',
+          border: '1px solid rgba(255, 255, 255, 0.05)',
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'center',
-          border: `1px solid ${iconColor}33`
+          justifyContent: 'center'
         }}>
-          <Icon size={24} color={iconColor} />
+          {Icon && <Icon size={20} color={iconColor} />}
         </div>
         <h3 style={{ 
-          fontSize: '1.75rem', 
+          fontSize: '1.25rem', 
           color: 'var(--text-primary)',
-          fontFamily: 'var(--font-heading)',
-          fontWeight: '700'
+          fontWeight: '700',
         }}>{title}</h3>
       </div>
       
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+      <div style={{ flex: 1 }}>
         {children}
       </div>
-    </motion.div>
+    </CyberCard>
   );
 };
 
-const InfoItem = ({ icon: Icon, label, value, color }) => {
+const FactItem = ({ icon: Icon, title, value, iconColor }) => {
   return (
-    <motion.div 
-      whileHover={{ x: 5 }}
-      style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', marginBottom: '1.5rem' }}
-    >
+    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem' }}>
       <div style={{ 
-        background: 'rgba(255, 255, 255, 0.03)', 
-        padding: '0.8rem', 
-        borderRadius: '1rem',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        border: '1px solid rgba(255, 255, 255, 0.05)'
-      }}>
-        <Icon size={20} color={color} />
-      </div>
-      <div>
-        <p style={{ fontSize: '0.85rem', color: 'var(--text-accent-violet)', fontWeight: '500' }}>{label}</p>
-        <p style={{ fontWeight: '600', color: 'var(--text-primary)' }}>{value}</p>
-      </div>
-    </motion.div>
-  );
-};
-
-const HobbyItem = ({ icon: Icon, label, color }) => {
-  return (
-    <motion.div 
-      whileHover={{ 
-        x: 10, 
-        background: 'rgba(255, 255, 255, 0.05)',
-        borderColor: color 
-      }}
-      style={{ 
-        display: 'flex', 
-        alignItems: 'center', 
-        gap: '1.25rem', 
-        background: 'rgba(255, 255, 255, 0.02)',
-        padding: '1.25rem',
-        borderRadius: '1.25rem',
-        marginBottom: '1rem',
-        border: '1px solid rgba(255, 255, 255, 0.03)',
-        transition: 'var(--transition-smooth)'
-      }}
-    >
-      <div style={{
-        width: '40px',
-        height: '40px',
+        padding: '0.6rem',
         borderRadius: '50%',
-        background: `${color}11`,
+        backgroundColor: 'rgba(255, 255, 255, 0.03)',
+        border: '1px solid rgba(255, 255, 255, 0.05)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'
       }}>
-        <Icon size={20} color={color} />
+        <Icon size={18} color={iconColor} />
       </div>
-      <span style={{ fontWeight: '600', color: 'var(--text-accent-cyan)' }}>{label}</span>
-    </motion.div>
+      <div>
+        <div style={{ fontSize: '0.8rem', color: 'var(--text-dim)', marginBottom: '0.2rem' }}>{title}</div>
+        <div style={{ fontSize: '0.95rem', color: 'var(--text-primary)', fontWeight: '600' }}>{value}</div>
+      </div>
+    </div>
+  );
+};
+
+const HobbyItem = ({ icon: Icon, label, iconColor }) => {
+  return (
+    <div 
+      style={{ 
+        display: 'flex', 
+        alignItems: 'center', 
+        gap: '1rem', 
+        padding: '1rem',
+        borderRadius: '12px',
+        backgroundColor: 'rgba(255, 255, 255, 0.02)',
+        border: '1px solid rgba(255, 255, 255, 0.05)',
+        marginBottom: '1rem',
+      }}
+    >
+      <Icon size={18} color={iconColor} />
+      <span style={{ fontWeight: '500', color: 'var(--text-primary)', fontSize: '0.95rem' }}>{label}</span>
+    </div>
   );
 };
 
 const About = () => {
   return (
     <section id="about" style={{ padding: '6rem 0', position: 'relative' }}>
-      <div className="container" style={{ paddingLeft: '5rem', paddingRight: '5rem' }}>
+      <div className="container">
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          style={{ textAlign: 'center', marginBottom: '6rem' }}
+          style={{ marginBottom: '4rem' }}
         >
-          <h2 style={{ fontSize: '4rem', marginBottom: '1rem', color: 'var(--text-primary)' }}>
-            About <span className="gradient-text">Me</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '0.5rem' }}>
+            <Compass size={24} color="var(--about-accent)" />
+            <span style={{ fontSize: '0.8rem', color: 'var(--about-accent)', fontWeight: '800', letterSpacing: '3px' }}>IDENTITY</span>
+          </div>
+          <h2 style={{ fontSize: '3rem', marginBottom: '1rem', color: 'var(--text-secondary)', fontFamily: 'var(--font-heading)' }}>
+            About <span style={{ color: 'var(--about-accent)' }}>Me</span>
           </h2>
-          <div style={{ 
-            width: '80px', 
-            height: '6px', 
-            background: 'var(--primary-gradient)', 
-            margin: '0 auto',
-            borderRadius: '10px',
-            boxShadow: '0 0 20px rgba(34, 211, 238, 0.5)'
-          }}></div>
+          <div style={{ width: '100%', height: '1px', background: 'var(--card-border)' }} />
         </motion.div>
 
-        <div style={{ 
-          display: 'grid', 
-          gridTemplateColumns: '1fr 1fr', 
-          gap: '3rem',
-          alignItems: 'stretch'
-        }}>
-          <Card title="Quick Facts" icon={Sparkles} iconColor="#facc15">
-            <InfoItem icon={MapPin} label="Location" value="Bareilly, Uttar Pradesh" color="#ef4444" />
-            <InfoItem icon={GraduationCap} label="Education" value="B.Tech Computer Science @ LPU" color="#3b82f6" />
-            <InfoItem icon={Briefcase} label="Focus" value="Data Science and AI/ML" color="#10b981" />
-            <InfoItem icon={Languages} label="Languages" value="English, Hindi" color="#f59e0b" />
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 450px), 1fr))', gap: '2rem', maxWidth: '1100px', margin: '0 auto' }}>
+          
+          <Card title="Quick Facts" icon={Sparkles} iconColor="#fbbf24">
+            <FactItem icon={MapPin} title="Location" value="Bareilly, Uttar Pradesh" iconColor="#ef4444" />
+            <FactItem icon={GraduationCap} title="Education" value="B.Tech Computer Science @ LPU" iconColor="#3b82f6" />
+            <FactItem icon={Briefcase} title="Focus" value="Data Science and AI/ML" iconColor="#10b981" />
+            <FactItem icon={Languages} title="Languages" value="English, Hindi" iconColor="#f59e0b" />
           </Card>
 
-          <Card title="My Journey" icon={Rocket} iconColor="#818cf8">
-            <p style={{ color: 'var(--text-primary)', marginBottom: '1rem', fontSize: '1.1rem', fontWeight: '600', lineHeight: '1.6' }}>
-              Hello! I'm <span className="gradient-text">Ajay Gangwar</span>, a Computer Science and Engineering student at <span style={{ color: 'var(--text-accent-cyan)' }}>LPU</span> with a strong interest in technology and software development.
+          <Card title="My Journey" icon={Rocket} iconColor="#8b5cf6">
+            <p style={{ color: 'var(--text-primary)', marginBottom: '1.25rem', lineHeight: '1.7', fontSize: '0.95rem', fontWeight: '500', fontFamily: 'var(--font-body)' }}>
+              Hello! I'm <span style={{color: 'var(--about-accent)'}}>Ajay Gangwar</span>, a Computer Science and Engineering student at <span style={{color: 'var(--about-accent)'}}>LPU</span> with a strong interest in technology and software development.
             </p>
-            <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem', lineHeight: '1.7', fontSize: '1.05rem' }}>
-              My journey in tech began with curiosity about how software and websites work, which led me to learn <span style={{ color: 'var(--text-accent-violet)' }}>C, C++, Java, and Python</span> and explore web development, data analysis, and algorithms.
+            <p style={{ color: 'var(--text-dim)', marginBottom: '1.25rem', lineHeight: '1.7', fontSize: '0.95rem', fontFamily: 'var(--font-body)' }}>
+              My journey in tech began with curiosity about how software and websites work, which led me to learn <span style={{color: '#a78bfa'}}>C, C++, Java, and Python</span> and explore web development, data analysis, and algorithms.
             </p>
-            <p style={{ color: 'var(--text-secondary)', lineHeight: '1.7', fontSize: '1.05rem' }}>
+            <p style={{ color: 'var(--text-dim)', lineHeight: '1.7', fontSize: '0.95rem', fontFamily: 'var(--font-body)' }}>
               I enjoy building practical projects, creating useful digital solutions, and continuously improving my skills by exploring new technologies.
             </p>
           </Card>
 
-          <Card title="Interests" icon={Heart} iconColor="#f472b6">
-            <HobbyItem icon={BookOpen} label="AI Research" color="#f59e0b" />
-            <HobbyItem icon={Music} label="Classical & Lo-fi" color="#8b5cf6" />
-            <HobbyItem icon={Gamepad2} label="Gaming & Strategy" color="#f43f5e" />
+          <Card title="Interests" icon={Heart} iconColor="#ec4899">
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+              <HobbyItem icon={BookOpen} label="AI Research" iconColor="#eab308" />
+              <HobbyItem icon={Music} label="Classical & Lo-fi" iconColor="#8b5cf6" />
+              <HobbyItem icon={Gamepad2} label="Gaming & Strategy" iconColor="#f43f5e" />
+              <HobbyItem icon={Code2} label="Web Development" iconColor="#06b6d4" />
+            </div>
           </Card>
 
-          <Card title="My Approach" icon={Code2} iconColor="#22d3ee">
-            <p style={{ color: 'var(--text-primary)', marginBottom: '1rem', lineHeight: '1.7', fontSize: '1.05rem', fontWeight: '500' }}>
+          <Card title="My Approach" icon={Code2} iconColor="#06b6d4">
+            <p style={{ color: 'var(--text-primary)', marginBottom: '1.25rem', lineHeight: '1.7', fontSize: '0.95rem', fontWeight: '500', fontFamily: 'var(--font-body)' }}>
               I believe in building technology that is not only functional but also practical and efficient. I focus on writing clean and well-structured code that helps solve real-world problems and improves user experience.
             </p>
-            <p style={{ color: 'var(--text-secondary)', lineHeight: '1.7', fontSize: '1.05rem' }}>
+            <p style={{ color: 'var(--text-dim)', lineHeight: '1.7', fontSize: '0.95rem', fontFamily: 'var(--font-body)' }}>
               My approach is centered on problem solving, continuous learning, and building meaningful projects. I aim to develop solutions that are simple, reliable, and user-friendly while constantly improving my skills and exploring new technologies.
             </p>
           </Card>
+
         </div>
       </div>
     </section>
