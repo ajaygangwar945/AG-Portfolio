@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, Phone, Linkedin, Github, Send, ExternalLink, Heart, Twitter } from 'lucide-react';
 import CyberCard from './common/CyberCard';
@@ -41,6 +41,42 @@ const ContactItem = ({ icon: Icon, label, value, link, color }) => (
 );
 
 const Contact = () => {
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [status, setStatus] = useState('idle'); // idle, submitting, success, error
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus('submitting');
+    
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          access_key: import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || '',
+          ...formData
+        })
+      });
+      
+      const result = await response.json();
+      if (result.success) {
+        setStatus('success');
+        setFormData({ name: '', email: '', message: '' });
+        setTimeout(() => setStatus('idle'), 5000); // Reset after 5s
+      } else {
+        setStatus('error');
+        setTimeout(() => setStatus('idle'), 5000);
+      }
+    } catch (error) {
+      console.error("Form submission error:", error);
+      setStatus('error');
+      setTimeout(() => setStatus('idle'), 5000);
+    }
+  };
+
   return (
     <section id="contact" style={{ padding: '8rem 0', position: 'relative' }}>
       <div className="container">
@@ -114,24 +150,63 @@ const Contact = () => {
               <span>Send a Message</span>
             </h3>
             
-            <div style={{ display: 'grid', gap: '1.5rem' }}>
+            <form onSubmit={handleSubmit} style={{ display: 'grid', gap: '1.5rem' }}>
               <div>
                 <label style={{ display: 'block', fontSize: '0.7rem', color: 'var(--contact-accent)', marginBottom: '0.5rem', fontWeight: '700' }}>NAME</label>
-                <input type="text" style={{ width: '100%', padding: '1rem', background: 'rgba(255,255,255,0.03)', border: '1px solid var(--card-border)', color: 'var(--text-primary)', outline: 'none' }} placeholder="John Doe" />
+                <input 
+                  type="text" 
+                  required
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  style={{ width: '100%', padding: '1rem', background: 'rgba(255,255,255,0.03)', border: '1px solid var(--card-border)', color: 'var(--text-primary)', outline: 'none' }} 
+                  placeholder="John Doe" 
+                />
               </div>
               <div>
                 <label style={{ display: 'block', fontSize: '0.7rem', color: 'var(--contact-accent)', marginBottom: '0.5rem', fontWeight: '700' }}>EMAIL</label>
-                <input type="email" style={{ width: '100%', padding: '1rem', background: 'rgba(255,255,255,0.03)', border: '1px solid var(--card-border)', color: 'var(--text-primary)', outline: 'none' }} placeholder="john@example.com" />
+                <input 
+                  type="email" 
+                  required
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  style={{ width: '100%', padding: '1rem', background: 'rgba(255,255,255,0.03)', border: '1px solid var(--card-border)', color: 'var(--text-primary)', outline: 'none' }} 
+                  placeholder="john@example.com" 
+                />
               </div>
               <div>
                 <label style={{ display: 'block', fontSize: '0.7rem', color: 'var(--contact-accent)', marginBottom: '0.5rem', fontWeight: '700' }}>MESSAGE</label>
-                <textarea rows="4" style={{ width: '100%', padding: '1rem', background: 'rgba(255,255,255,0.03)', border: '1px solid var(--card-border)', color: 'var(--text-primary)', outline: 'none', resize: 'none' }} placeholder="How can I help you?"></textarea>
+                <textarea 
+                  rows="4" 
+                  required
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  style={{ width: '100%', padding: '1rem', background: 'rgba(255,255,255,0.03)', border: '1px solid var(--card-border)', color: 'var(--text-primary)', outline: 'none', resize: 'none' }} 
+                  placeholder="How can I help you?"
+                ></textarea>
               </div>
-              <button className="btn btn-contact" style={{ width: '100%', justifyContent: 'center' }}>
+              
+              {status === 'success' && (
+                <div style={{ padding: '1rem', background: 'rgba(16, 185, 129, 0.1)', border: '1px solid #10b981', color: '#10b981', textAlign: 'center', fontSize: '0.9rem', borderRadius: '4px' }}>
+                  Message sent successfully! I'll get back to you soon.
+                </div>
+              )}
+              
+              {status === 'error' && (
+                <div style={{ padding: '1rem', background: 'rgba(239, 68, 68, 0.1)', border: '1px solid #ef4444', color: '#ef4444', textAlign: 'center', fontSize: '0.9rem', borderRadius: '4px' }}>
+                  Failed to send message. Please try again or email me directly.
+                </div>
+              )}
+
+              <button 
+                type="submit" 
+                className="btn btn-contact" 
+                disabled={status === 'submitting'}
+                style={{ width: '100%', justifyContent: 'center', opacity: status === 'submitting' ? 0.7 : 1, cursor: status === 'submitting' ? 'not-allowed' : 'pointer' }}
+              >
                 <Send size={18} />
-                <span>SEND MESSAGE</span>
+                <span>{status === 'submitting' ? 'SENDING...' : 'SEND MESSAGE'}</span>
               </button>
-            </div>
+            </form>
           </CyberCard>
         </div>
 
