@@ -25,7 +25,7 @@ const Resume = () => {
   const contactLinks = [
     { icon: Mail, href: 'mailto:ajaygangwar945@gmail.com', color: '#ef4444' },
     { icon: Linkedin, href: 'https://linkedin.com/in/ajaygangwar945', color: '#3b82f6' },
-    { icon: Github, href: 'https://github.com/ajaygangwar945', color: '#ffffff' },
+    { icon: Github, href: 'https://github.com/ajaygangwar945', color: 'var(--github-accent)' },
   ];
 
   const nodes = [
@@ -78,12 +78,12 @@ const Resume = () => {
   };
 
   return (
-    <section id="resume" style={{ padding: '2rem 0', minHeight: '100vh', position: 'relative', overflow: 'hidden' }}>
+    <section id="resume" style={{ padding: '4rem 0', minHeight: '100vh', position: 'relative', overflow: 'hidden' }}>
 
       
       <div className="container">
         {/* Terminal Header */}
-        <div style={{ marginBottom: '4rem', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', borderBottom: '1px solid var(--card-border)', paddingBottom: '1rem' }}>
+        <div style={{ marginBottom: '2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', borderBottom: '1px solid var(--card-border)', paddingBottom: '1rem' }}>
           <div>
             <h2 style={{ fontSize: '2.5rem', fontFamily: 'var(--font-heading)', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: '1rem' }}>
               <FileText size={32} color="var(--resume-accent)" /> 

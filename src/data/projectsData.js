@@ -17,8 +17,25 @@ import projectLegal from '../assets/project-legal.png';
 import projectRainfall from '../assets/project-rainfall.png';
 import projectConference from '../assets/project-conference.png';
 import projectStudent from '../assets/project-student.png';
+import projectAyush from '../assets/project-ayush.png';
+import projectCv from '../assets/project-cv.png';
+import projectCertificates from '../assets/project-certificates.png';
+import projectPortfolioAi from '../assets/project-portfolio-ai.png';
+import projectHtmlHub from '../assets/project-html-hub.png';
 
 export const allProjects = [
+  {
+    title: "CV Portfolio",
+    description: "Modern interactive CV portfolio with 3D glassmorphism effects, dynamic neon styling, and an integrated in-page PDF viewer.",
+    tech: ["HTML5", "CSS3", "JavaScript", "VanillaTilt.js"],
+    github: "https://github.com/ajaygangwar945/CV",
+    live: "https://ajaygangwar945.github.io/CV/",
+    icon: AppWindow,
+    color: "#a855f7",
+    image: projectCv,
+    category: "Frontend",
+    uid: "CV-01"
+  },
   {
     title: "MedPath Pro",
     description: "Interactive hospital shortest-path visualizer using Dijkstra’s algorithm with real-time emergency routing.",
@@ -104,6 +121,18 @@ export const allProjects = [
     uid: "EVT-06"
   },
   {
+    title: "Certificates & Docs Portal",
+    description: "Interactive portal to organize, search, and showcase certificates & documents with intelligent filtering, dynamic theming, and premium UI.",
+    tech: ["HTML5", "CSS3", "JavaScript", "Vercel"],
+    github: "https://github.com/ajaygangwar945/Certificates-Docs-Portal",
+    live: "https://certificates-docs-portal.vercel.app",
+    icon: Layers,
+    color: "#4ade80",
+    image: projectCertificates,
+    category: "Frontend",
+    uid: "CERT-08"
+  },
+  {
     title: "Portfolio Hub",
     description: "Premium multi-portfolio hub featuring a glassmorphic interface, 3D visuals, and data dashboards.",
     tech: ["HTML", "CSS", "Three.js"],
@@ -140,6 +169,18 @@ export const allProjects = [
     uid: "CWID-14"
   },
   {
+    title: "Portfolio",
+    description: "Personal portfolio website built with React, Vite, and Tailwind CSS, featuring an AI chatbot and project generator powered by Google Gemini API.",
+    tech: ["React", "Vite", "Tailwind CSS", "Gemini API"],
+    github: "https://github.com/ajaygangwar945/My-Portfolio",
+    live: "https://ajay-gangwar-portfolio.netlify.app/",
+    icon: Cpu,
+    color: "#f43f5e",
+    image: projectPortfolioAi,
+    category: "Frontend, AI & Data",
+    uid: "PORT-GEM-25"
+  },
+  {
     title: "Indian Rainfall Data Analysis",
     description: "Comprehensive Rainfall Exploratory Data Analysis and Machine Learning project.",
     tech: ["Python", "Pandas", "Scikit-learn"],
@@ -162,6 +203,18 @@ export const allProjects = [
     image: projectTerrorism,
     category: "Data Visualization",
     uid: "GTA-13"
+  },
+  {
+    title: "Ayush FHIR",
+    description: "Specialized healthcare interoperability solution integrating Traditional Indian Medicine with HL7 FHIR standards for standardized healthcare data exchange.",
+    tech: ["React", "TypeScript", "Tailwind CSS", "Node.js", "FHIR"],
+    github: "https://github.com/ajaygangwar945/Ayush-FHIR",
+    live: "https://ayush-fhir.vercel.app",
+    icon: Activity,
+    color: "#10b981",
+    image: projectAyush,
+    category: "Full Stack, AI & Data",
+    uid: "AYUSH-SIH-2024"
   },
   {
     title: "Ayush Intelligence",
@@ -222,5 +275,17 @@ export const allProjects = [
     image: projectPet,
     category: "Frontend",
     uid: "HUB-PET-03"
+  },
+  {
+    title: "First HTML Learning Hub",
+    description: "Comprehensive HTML & CSS showcase featuring an interactive Three.js powered 3D dashboard with 30+ unique modular web components.",
+    tech: ["HTML5", "CSS3", "JavaScript", "Three.js"],
+    github: "https://github.com/ajaygangwar945/First-HTML-Project-Overview",
+    live: "https://ajaygangwar945.github.io/First-HTML-Project-Overview/",
+    icon: Terminal,
+    color: "#38bdf8",
+    image: projectHtmlHub,
+    category: "Frontend",
+    uid: "HTML-LH-20"
   }
 ];

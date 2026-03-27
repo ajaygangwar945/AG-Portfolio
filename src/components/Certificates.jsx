@@ -168,13 +168,13 @@ const Certificates = () => {
   ];
 
   return (
-    <section id="certificates" style={{ padding: '6rem 0', background: 'rgba(0,0,0,0.1)' }}>
+    <section id="certificates" style={{ padding: '4rem 0', minHeight: '100vh', display: 'flex', alignItems: 'center' }}>
       <div className="container">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '3rem' }}
+          style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}
         >
           <ShieldCheck size={32} color="var(--certificates-accent)" />
           <h2 style={{ fontSize: '2rem', fontFamily: 'var(--font-heading)', color: 'var(--text-secondary)' }}>

@@ -16,7 +16,7 @@ const SkillCard = ({ name, percentage, color, category, icon: Icon, slug, custom
       padding="1.5rem"
       accentColor={color}
       style={{
-        '--card-border': color.startsWith('#') ? `${color}33` : `rgba(var(--primary-accent-rgb), 0.2)`,
+        '--card-border': `color-mix(in srgb, ${color}, transparent 80%)`,
         '--primary-accent': color
       }}
     >
@@ -24,7 +24,7 @@ const SkillCard = ({ name, percentage, color, category, icon: Icon, slug, custom
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
           <div style={{ 
             padding: '0.4rem', 
-            background: `${color.startsWith('#') ? color + '15' : 'rgba(var(--primary-accent-rgb), 0.1)'}`, 
+            background: `color-mix(in srgb, ${color}, transparent 93%)`, 
             border: `1px solid ${color}`, 
             display: 'flex', 
             alignItems: 'center', 
@@ -116,9 +116,9 @@ const Skills = () => {
     : allSkills.filter(skill => skill.category === activeTab);
 
   return (
-    <section id="skills" style={{ padding: '6rem 0', position: 'relative' }}>
+    <section id="skills" style={{ padding: '4rem 0', minHeight: '100vh', display: 'flex', alignItems: 'center' }}>
       <div className="container">
-        <div style={{ marginBottom: '4rem' }}>
+        <div style={{ marginBottom: '2rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '0.5rem' }}>
             <Cpu size={24} color="var(--skills-accent)" />
             <span style={{ fontSize: '0.8rem', color: 'var(--skills-accent)', fontWeight: '800', letterSpacing: '3px' }}>CORE SKILLS</span>
@@ -197,16 +197,14 @@ const Skills = () => {
                 accentColor={tech.color}
                 notchedSize={6}
                 notchedOffset={3}
-                whileHover={{ scale: 1.05 }}
+
                 style={{ 
                   display: 'flex', 
                   alignItems: 'center', 
                   gap: '0.75rem', 
                   color: 'var(--text-primary)',
                   background: 'var(--badge-bg)',
-                  border: `1px solid ${tech.color.startsWith('#') ? 
-                    `rgba(${parseInt(tech.color.slice(1,3), 16)}, ${parseInt(tech.color.slice(3,5), 16)}, ${parseInt(tech.color.slice(5,7), 16)}, var(--badge-border-alpha))` : 
-                    tech.color}`,
+                  border: `1px solid color-mix(in srgb, ${tech.color}, transparent ${100 - (parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--badge-border-alpha')) * 100 || 70)}%)`,
                   cursor: 'default'
                 }}
               >

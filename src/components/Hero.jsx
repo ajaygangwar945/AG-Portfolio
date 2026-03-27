@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Terminal, Cpu, Database, Github, Mail, Code } from 'lucide-react';
+import { Terminal, Cpu, Database, Github, Mail, Code, Linkedin } from 'lucide-react';
 import CyberCard from './common/CyberCard';
 
 const Hero = () => {
@@ -106,10 +106,15 @@ const Hero = () => {
             ))}
           </div>
 
-          <div style={{ display: 'flex', gap: '1.5rem' }}>
+          <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
             <a href="https://github.com/ajaygangwar945" target="_blank" rel="noopener noreferrer">
               <button className="btn btn-primary">
                 <Github size={18} /> GITHUB
+              </button>
+            </a>
+            <a href="https://linkedin.com/in/ajaygangwar945" target="_blank" rel="noopener noreferrer">
+              <button className="btn btn-primary">
+                <Linkedin size={18} /> LINKEDIN
               </button>
             </a>
             <a href="mailto:ajaygangwar945@gmail.com">

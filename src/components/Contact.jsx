@@ -10,25 +10,25 @@ const ContactItem = ({ icon: Icon, label, value, link, color }) => (
     viewport={{ once: true }}
     onClick={() => window.open(link, '_blank')}
     accentColor={color}
-    style={{ 
-      padding: '1.5rem', 
-      background: 'rgba(255, 255, 255, 0.02)',
-      display: 'flex',
-      alignItems: 'center',
-      gap: '1.5rem',
-      cursor: 'pointer',
-      '--card-border': color.startsWith('#') ? `${color}33` : 'var(--contact-accent-alpha)',
-      '--primary-accent': color
-    }}
+      style={{ 
+        padding: '1.5rem', 
+        background: 'rgba(255, 255, 255, 0.02)',
+        display: 'flex',
+        alignItems: 'center',
+        gap: '1.5rem',
+        cursor: 'pointer',
+        '--card-border': `color-mix(in srgb, ${color}, transparent 80%)`,
+        '--primary-accent': color
+      }}
   >
     <div style={{ 
       width: '50px', 
       height: '50px', 
-      background: `${color}11`, 
+      background: `color-mix(in srgb, ${color}, transparent 93%)`, 
       display: 'flex', 
       alignItems: 'center', 
       justifyContent: 'center',
-      border: `1px solid ${color}44`
+      border: `1px solid color-mix(in srgb, ${color}, transparent 73%)`
     }}>
       <Icon size={24} color={color} />
     </div>
@@ -78,13 +78,13 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" style={{ padding: '8rem 0', position: 'relative' }}>
+    <section id="contact" style={{ padding: '4rem 0', minHeight: '100vh', display: 'flex', alignItems: 'center' }}>
       <div className="container">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          style={{ textAlign: 'center', marginBottom: '4rem' }}
+          style={{ textAlign: 'center', marginBottom: '2rem' }}
         >
           <h2 style={{ fontSize: '3rem', fontFamily: 'var(--font-heading)', color: 'var(--text-secondary)', marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem' }}>
             <Mail size={40} color="var(--contact-accent)" />
@@ -117,7 +117,7 @@ const Contact = () => {
               label="GitHub" 
               value="github.com/ajaygangwar945" 
               link="https://github.com/ajaygangwar945"
-              color="#ffffff"
+              color="var(--github-accent)"
             />
             <ContactItem 
               icon={Twitter} 

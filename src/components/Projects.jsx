@@ -93,9 +93,8 @@ export const ProjectCard = ({ title, description, tech, github, live, icon: Icon
             className="cyber-card-compact"
             padding="0.25rem 0.61rem"
             accentColor={color || 'var(--projects-accent)'}
-            notchedSize={4}
-            notchedOffset={2}
-            whileHover={{ scale: 1.05 }}
+            notchedSize={6}
+            notchedOffset={3}
             style={{
               fontSize: '0.65rem',
               color: color || 'var(--projects-accent)',
@@ -160,12 +159,12 @@ const Projects = () => {
     : allProjects.filter(project => project.category.includes(activeTab));
 
   return (
-    <section id="projects" style={{ padding: '6rem 0', minHeight: '800px' }}>
+    <section id="projects" style={{ padding: '4rem 0', minHeight: '100vh', display: 'flex', alignItems: 'center' }}>
       <div className="container">
         <motion.div 
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          style={{ marginBottom: '4rem' }}
+          style={{ marginBottom: '2rem' }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '0.5rem' }}>
             <Layers size={24} color="var(--projects-accent)" />

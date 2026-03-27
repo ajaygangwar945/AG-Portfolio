@@ -2,9 +2,12 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Home, User, Layers, GraduationCap, Cpu, Compass, Box, Award, FileText, Mail, Menu, X, ShieldCheck } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
+import { useLocation } from 'react-router-dom';
 
 const Navbar = ({ theme, toggleTheme }) => {
-  const [activeTab, setActiveTab] = useState('home');
+  const location = useLocation();
+  const isProjectsPage = location.pathname === '/projects';
+  const [activeTab, setActiveTab] = useState(isProjectsPage ? 'projects' : 'home');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navLinks = useMemo(() => [
@@ -20,6 +23,7 @@ const Navbar = ({ theme, toggleTheme }) => {
   ], []);
 
   useEffect(() => {
+    if (isProjectsPage) return; // skip scroll spy on /projects
     const handleScroll = () => {
       const sections = navLinks.map(link => link.id);
       const scrollPosition = window.scrollY + 100;
@@ -38,7 +42,7 @@ const Navbar = ({ theme, toggleTheme }) => {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [navLinks]);
+  }, [navLinks, isProjectsPage]);
 
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
 
@@ -64,7 +68,7 @@ const Navbar = ({ theme, toggleTheme }) => {
         <motion.div 
           whileHover={{ x: 5 }}
           style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: '1.2rem', fontWeight: '900', fontFamily: 'var(--font-heading)', cursor: 'pointer', color: 'var(--primary-accent)' }}
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          onClick={() => isProjectsPage ? window.location.href = '/' : window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
           <div style={{ width: '32px', height: '32px', border: '2px solid var(--primary-accent)', display: 'flex', alignItems: 'center', justifyContent: 'center', transform: 'rotate(45deg)' }}>
              <span style={{ transform: 'rotate(-45deg)', fontSize: '0.8rem' }}>AG</span>
@@ -81,8 +85,15 @@ const Navbar = ({ theme, toggleTheme }) => {
                   backgroundColor: `var(--${link.id}-accent-alpha, rgba(102, 252, 241, 0.1))`,
                   color: `var(--${link.id}-accent)`
                 }}
-                href={`#${link.id}`}
-                onClick={() => setActiveTab(link.id)}
+                href={isProjectsPage ? `/#${link.id}` : `#${link.id}`}
+                onClick={(e) => {
+                  if (isProjectsPage) {
+                    e.preventDefault();
+                    window.location.href = `/#${link.id}`;
+                  } else {
+                    setActiveTab(link.id);
+                  }
+                }}
                 style={{
                   color: activeTab === link.id ? `var(--${link.id}-accent)` : 'var(--text-primary)',
                   padding: '0.5rem 0.75rem',
@@ -132,10 +143,15 @@ const Navbar = ({ theme, toggleTheme }) => {
             {navLinks.map((link) => (
               <a 
                 key={link.name}
-                href={`#${link.id}`}
-                onClick={() => {
-                  setActiveTab(link.id);
-                  setIsMobileMenuOpen(false);
+                href={isProjectsPage ? `/#${link.id}` : `#${link.id}`}
+                onClick={(e) => {
+                  if (isProjectsPage) {
+                    e.preventDefault();
+                    window.location.href = `/#${link.id}`;
+                  } else {
+                    setActiveTab(link.id);
+                    setIsMobileMenuOpen(false);
+                  }
                 }}
                 style={{
                   padding: '1.25rem 2rem',

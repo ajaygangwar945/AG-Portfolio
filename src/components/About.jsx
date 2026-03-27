@@ -26,8 +26,8 @@ const Card = ({ title, icon: Icon, iconColor, children, className = "", style = 
         <div style={{ 
           padding: '0.5rem',
           borderRadius: '12px',
-          backgroundColor: 'rgba(255, 255, 255, 0.03)',
-          border: '1px solid rgba(255, 255, 255, 0.05)',
+          backgroundColor: 'var(--about-accent-alpha)',
+          border: '1px solid var(--card-border)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center'
@@ -54,8 +54,8 @@ const FactItem = ({ icon: Icon, title, value, iconColor }) => {
       <div style={{ 
         padding: '0.6rem',
         borderRadius: '50%',
-        backgroundColor: 'rgba(255, 255, 255, 0.03)',
-        border: '1px solid rgba(255, 255, 255, 0.05)',
+        backgroundColor: 'var(--about-accent-alpha)',
+        border: '1px solid var(--card-border)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'
@@ -79,8 +79,8 @@ const HobbyItem = ({ icon: Icon, label, iconColor }) => {
         gap: '1rem', 
         padding: '1rem',
         borderRadius: '12px',
-        backgroundColor: 'rgba(255, 255, 255, 0.02)',
-        border: '2px solid rgba(255, 255, 255, 0.1)',
+        backgroundColor: 'var(--about-accent-alpha)',
+        border: '1px solid var(--card-border)',
         marginBottom: '1rem',
       }}
     >
@@ -92,13 +92,13 @@ const HobbyItem = ({ icon: Icon, label, iconColor }) => {
 
 const About = () => {
   return (
-    <section id="about" style={{ padding: '6rem 0', position: 'relative' }}>
+    <section id="about" style={{ padding: '4rem 0', minHeight: '100vh', display: 'flex', alignItems: 'center' }}>
       <div className="container">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          style={{ marginBottom: '4rem' }}
+          style={{ marginBottom: '2rem' }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '0.5rem' }}>
             <Compass size={24} color="var(--about-accent)" />
