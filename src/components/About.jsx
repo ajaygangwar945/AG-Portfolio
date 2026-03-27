@@ -80,7 +80,7 @@ const HobbyItem = ({ icon: Icon, label, iconColor }) => {
         padding: '1rem',
         borderRadius: '12px',
         backgroundColor: 'rgba(255, 255, 255, 0.02)',
-        border: '1px solid rgba(255, 255, 255, 0.05)',
+        border: '2px solid rgba(255, 255, 255, 0.1)',
         marginBottom: '1rem',
       }}
     >

@@ -12,7 +12,6 @@ const EducationItem = ({ school, degree, period, location, cgpa, logo, color = "
     accentColor={color}
     style={{ 
       marginBottom: '1.5rem',
-      borderLeft: `4px solid ${color}`,
       minHeight: '220px',
       display: 'flex',
       flexDirection: 'column',

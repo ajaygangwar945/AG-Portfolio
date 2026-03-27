@@ -310,7 +310,18 @@ h1, h2, h3, h4 {
 
 .btn-primary:hover {
   background: var(--text-secondary);
-  box-shadow: 0 0 30px rgba(102, 252, 241, 0.4);
+  box-shadow: 0 0 30px rgba(var(--primary-accent-rgb), 0.4);
+  transform: skewX(-5deg);
+}
+
+.btn-contact {
+  background: var(--contact-accent);
+  color: var(--bg-color);
+}
+
+.btn-contact:hover {
+  background: var(--text-secondary);
+  box-shadow: 0 0 30px var(--contact-accent-alpha);
   transform: skewX(-5deg);
 }
 

@@ -9,7 +9,7 @@ const CyberCard = ({
   style = {},
   notchedSize = 20,
   notchedOffset = 10,
-  notchedBorderWidth = 2,
+  notchedBorderWidth = 1,
   ...motionProps 
 }) => {
   return (

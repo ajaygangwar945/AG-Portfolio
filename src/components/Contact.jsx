@@ -1,23 +1,24 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Mail, Phone, Linkedin, Github, Send, ExternalLink, MapPin } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Mail, Phone, Linkedin, Github, Send, ExternalLink, Heart, Twitter } from 'lucide-react';
+import CyberCard from './common/CyberCard';
 
 const ContactItem = ({ icon: Icon, label, value, link, color }) => (
-  <motion.a 
-    href={link}
-    target="_blank"
-    rel="noopener noreferrer"
+  <CyberCard 
     initial={{ opacity: 0, y: 10 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
-    className="cyber-card"
+    onClick={() => window.open(link, '_blank')}
+    accentColor={color}
     style={{ 
       padding: '1.5rem', 
       background: 'rgba(255, 255, 255, 0.02)',
       display: 'flex',
       alignItems: 'center',
       gap: '1.5rem',
-      cursor: 'pointer'
+      cursor: 'pointer',
+      '--card-border': color.startsWith('#') ? `${color}33` : 'var(--contact-accent-alpha)',
+      '--primary-accent': color
     }}
   >
     <div style={{ 
@@ -36,7 +37,7 @@ const ContactItem = ({ icon: Icon, label, value, link, color }) => (
       <p style={{ fontSize: '1rem', color: 'var(--text-secondary)', fontWeight: '600' }}>{value}</p>
     </div>
     <ExternalLink size={14} style={{ marginLeft: 'auto', opacity: 0.3 }} />
-  </motion.a>
+  </CyberCard>
 );
 
 const Contact = () => {
@@ -49,8 +50,9 @@ const Contact = () => {
           viewport={{ once: true }}
           style={{ textAlign: 'center', marginBottom: '4rem' }}
         >
-          <h2 style={{ fontSize: '3rem', fontFamily: 'var(--font-heading)', color: 'var(--text-secondary)', marginBottom: '1rem' }}>
-            Get in <span style={{ color: 'var(--primary-accent)' }}>Touch</span>
+          <h2 style={{ fontSize: '3rem', fontFamily: 'var(--font-heading)', color: 'var(--text-secondary)', marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem' }}>
+            <Mail size={40} color="var(--contact-accent)" />
+            Get in <span style={{ color: 'var(--contact-accent)' }}>Touch</span>
           </h2>
           <p style={{ color: 'var(--text-dim)', maxWidth: '600px', margin: '0 auto' }}>
             Available for freelance, full-time positions, and AI consultations. Reach out via any of the channels below.
@@ -65,7 +67,7 @@ const Contact = () => {
               label="Email" 
               value="ajaygangwar945@gmail.com" 
               link="mailto:ajaygangwar945@gmail.com"
-              color="#66fcf1"
+              color="var(--contact-accent)"
             />
             <ContactItem 
               icon={Linkedin} 
@@ -82,6 +84,13 @@ const Contact = () => {
               color="#ffffff"
             />
             <ContactItem 
+              icon={Twitter} 
+              label="Twitter / X" 
+              value="twitter.com/ajaygangwar945" 
+              link="https://twitter.com/ajaygangwar945"
+              color="#1da1f2"
+            />
+            <ContactItem 
               icon={Phone} 
               label="Phone" 
               value="+91-8283024392" 
@@ -91,41 +100,45 @@ const Contact = () => {
           </div>
 
           {/* Minimal Form / Extra Info */}
-          <div className="cyber-card" style={{ padding: '2.5rem', background: 'var(--card-bg)' }}>
+          <CyberCard 
+            accentColor="var(--contact-accent)"
+            padding="2.5rem"
+            style={{ 
+              background: 'var(--card-bg)',
+              '--card-border': 'var(--contact-accent-alpha)',
+              '--primary-accent': 'var(--contact-accent)'
+            }}
+          >
             <h3 style={{ fontSize: '1.2rem', color: 'var(--text-secondary)', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-              <Send size={18} color="var(--primary-accent)" />
+              <Send size={18} color="var(--contact-accent)" />
               <span>Send a Message</span>
             </h3>
             
             <div style={{ display: 'grid', gap: '1.5rem' }}>
               <div>
-                <label style={{ display: 'block', fontSize: '0.7rem', color: 'var(--text-dim)', marginBottom: '0.5rem', fontWeight: '700' }}>NAME</label>
+                <label style={{ display: 'block', fontSize: '0.7rem', color: 'var(--contact-accent)', marginBottom: '0.5rem', fontWeight: '700' }}>NAME</label>
                 <input type="text" style={{ width: '100%', padding: '1rem', background: 'rgba(255,255,255,0.03)', border: '1px solid var(--card-border)', color: 'var(--text-primary)', outline: 'none' }} placeholder="John Doe" />
               </div>
               <div>
-                <label style={{ display: 'block', fontSize: '0.7rem', color: 'var(--text-dim)', marginBottom: '0.5rem', fontWeight: '700' }}>EMAIL</label>
+                <label style={{ display: 'block', fontSize: '0.7rem', color: 'var(--contact-accent)', marginBottom: '0.5rem', fontWeight: '700' }}>EMAIL</label>
                 <input type="email" style={{ width: '100%', padding: '1rem', background: 'rgba(255,255,255,0.03)', border: '1px solid var(--card-border)', color: 'var(--text-primary)', outline: 'none' }} placeholder="john@example.com" />
               </div>
               <div>
-                <label style={{ display: 'block', fontSize: '0.7rem', color: 'var(--text-dim)', marginBottom: '0.5rem', fontWeight: '700' }}>MESSAGE</label>
+                <label style={{ display: 'block', fontSize: '0.7rem', color: 'var(--contact-accent)', marginBottom: '0.5rem', fontWeight: '700' }}>MESSAGE</label>
                 <textarea rows="4" style={{ width: '100%', padding: '1rem', background: 'rgba(255,255,255,0.03)', border: '1px solid var(--card-border)', color: 'var(--text-primary)', outline: 'none', resize: 'none' }} placeholder="How can I help you?"></textarea>
               </div>
-              <button className="btn btn-primary" style={{ width: '100%', justifyContent: 'center' }}>
+              <button className="btn btn-contact" style={{ width: '100%', justifyContent: 'center' }}>
                 <Send size={18} />
                 <span>SEND MESSAGE</span>
               </button>
             </div>
-          </div>
+          </CyberCard>
         </div>
 
         <div style={{ marginTop: '6rem', paddingTop: '4rem', borderTop: '1px solid rgba(255,255,255,0.05)', textAlign: 'center' }}>
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem' }}>
-            <MapPin size={14} color="var(--primary-accent)" />
-            <span style={{ fontSize: '0.8rem', color: 'var(--text-dim)' }}>LOCATION: PHAGWARA / BAREILLY, INDIA</span>
-          </div>
           <div style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem', color: 'var(--text-dim)', fontSize: '0.7rem', fontWeight: '700' }}>
-            <span>© 2026 AJAY GANGWAR</span>
-            <span>POWERED BY REACT + FRAMER MOTION</span>
+            <span style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>© 2026 AJAY GANGWAR</span>
+            <span style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>Made with <Heart size={12} color="var(--contact-accent)" /> in India</span>
           </div>
         </div>
       </div>
