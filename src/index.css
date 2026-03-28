@@ -1723,7 +1723,7 @@ h4 {
 @media (min-width: 768px) {
   .chatbot-window {
     width: 500px;
-    height: 700px;
+    height: 800px;
   }
 }
 
@@ -1731,7 +1731,7 @@ h4 {
 @media (min-width: 1024px) {
   .chatbot-window {
     width: 500px;
-    height: 700px;
+    height: 850px;
   }
 }
 
