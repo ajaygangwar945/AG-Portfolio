@@ -4,78 +4,62 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Zap, Cpu, Activity, Shield, Box, Code, Globe, Database, Terminal, Layers, Laptop, PenTool, Server, GitBranch, Github as GithubIcon, Image as ImageIcon } from 'lucide-react';
 import CyberCard from './common/CyberCard';
 
-const SkillCard = ({ name, percentage, color, category, icon: Icon, slug, customLogo }) => {
+const SkillCard = ({ name, color, slug, percentage, category, customLogo, icon: Icon }) => {
   const logoUrl = customLogo || (slug ? `https://cdn.simpleicons.org/${slug}` : null);
 
   return (
     <CyberCard
       layout
-      initial={{ opacity: 0, scale: 0.95 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true }}
-      padding="1.5rem"
+      disableHover
+      className="skill-card-main cyber-card-compact"
       accentColor={color}
+      padding="1.25rem"
+      notchedSize={14}
+      notchedOffset={10}
+      notchedBorderWidth={1.5}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
       style={{
-        '--card-border': `color-mix(in srgb, ${color}, transparent 80%)`,
-        '--primary-accent': color
+        '--accent-color': color,
+        background: 'var(--card-bg)',
+        borderColor: color,
       }}
     >
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-          <div style={{ 
-            padding: '0.4rem', 
-            background: `color-mix(in srgb, ${color}, transparent 93%)`, 
-            border: `1px solid ${color}`, 
-            display: 'flex', 
-            alignItems: 'center', 
-            justifyContent: 'center', 
-            width: '28px', 
-            height: '28px' 
-          }}>
-            <img 
-              src={logoUrl} 
-              alt={name} 
-              style={{ 
-                width: '18px', 
-                height: '18px', 
-                objectFit: 'contain',
-                filter: color.startsWith('var') ? 'var(--logo-icon-filter)' : 'none'
-              }} 
-              onError={(e) => {
-                e.target.style.display = 'none';
-                const sibling = e.target.nextSibling;
-                if (sibling && sibling.style) sibling.style.display = 'block';
-              }}
-            />
-            {Icon && <Icon size={16} color={color} style={{ display: 'none' }} />}
-          </div>
-          <div>
-            <h4 style={{ 
-              fontSize: '1rem', 
-              fontWeight: '700', 
-              color: 'var(--text-secondary)',
-              fontFamily: 'var(--font-heading)'
-            }}>{name}</h4>
-            <span style={{ fontSize: '0.6rem', color: color, fontWeight: '800', letterSpacing: '1px' }}>{category.toUpperCase()}</span>
-          </div>
+      <div className="skill-card-scanline" aria-hidden />
+      <div className="skill-card-top">
+        <div className="skill-card-icon-box">
+          <img 
+            src={logoUrl} 
+            alt={name} 
+            style={{ 
+              filter: color.startsWith('var') ? 'var(--logo-icon-filter)' : 'none'
+            }} 
+            onError={(e) => {
+              e.target.style.display = 'none';
+              const sibling = e.target.nextSibling;
+              if (sibling && sibling.style) sibling.style.display = 'block';
+            }}
+          />
+          {Icon && <Icon size={18} color={color} style={{ display: 'none' }} />}
         </div>
-        <div style={{ textAlign: 'right' }}>
-          <span style={{ fontSize: '0.9rem', fontWeight: '800', color: color }}>{percentage}%</span>
+        
+        <div className="skill-card-info">
+          <h4 className="skill-card-name">{name}</h4>
+          <span className="skill-card-category">{category}</span>
         </div>
-      </div>
-
-      <div style={{ height: '4px', background: 'rgba(255, 255, 255, 0.05)', position: 'relative', overflow: 'hidden' }}>
-        <motion.div
-          initial={{ width: 0 }}
-          whileInView={{ width: `${percentage}%` }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
-          style={{ height: '100%', background: color, boxShadow: `0 0 10px ${color}` }}
-        />
+        
+        <div className="skill-card-percent">{percentage}%</div>
       </div>
       
-      <div style={{ marginTop: '0.5rem', display: 'flex', justifyContent: 'space-between' }}>
-         <div style={{ width: '2px', height: '4px', background: color }} />
-         <div style={{ width: '2px', height: '4px', background: color }} />
+      <div className="skill-progress-wrapper">
+        <motion.div 
+          className="skill-progress-bar"
+          initial={{ width: 0 }}
+          whileInView={{ width: `${percentage}%` }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.5, ease: "easeOut", delay: 0.2 }}
+        />
       </div>
     </CyberCard>
   );
@@ -157,7 +141,7 @@ const Skills = () => {
         <div style={{ 
           display: 'grid', 
           gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', 
-          gap: '1.5rem'
+          gap: '1.25rem'
         }}>
           <AnimatePresence mode='popLayout'>
             {filteredSkills.map((skill) => (
@@ -176,7 +160,8 @@ const Skills = () => {
           style={{ 
             marginTop: '4rem',
             '--card-border': 'var(--skills-accent-alpha)',
-            '--primary-accent': 'var(--skills-accent)'
+            '--primary-accent': 'var(--skills-accent)',
+            background: 'var(--card-bg)'
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: 'var(--skills-accent)', marginBottom: '1.5rem' }}>
@@ -184,41 +169,41 @@ const Skills = () => {
             <span style={{ fontWeight: '800', fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.2em' }}>Learning Journey</span>
           </div>
           <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap', fontFamily: 'var(--font-body)', fontSize: '0.9rem', fontWeight: '500' }}>
+            {/* Learning Journey Items */}
             {[
               { name: 'Docker', color: '#2496ed', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg' },
               { name: 'AWS', color: '#ff9900', logo: 'https://img.icons8.com/color/144/amazon-web-services.png' },
               { name: 'Spring Boot', color: '#6db33f', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg' },
               { name: 'TypeScript', color: '#3178c6', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg' }
             ].map((tech) => (
-              <CyberCard 
+              <CyberCard
                 key={tech.name}
-                className="cyber-card-compact"
-                padding="0.6rem 1.2rem"
+                disableHover
+                className="skill-card-journey cyber-card-compact"
                 accentColor={tech.color}
-                notchedSize={6}
-                notchedOffset={3}
-
-                style={{ 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  gap: '0.75rem', 
-                  color: 'var(--text-primary)',
-                  background: 'var(--badge-bg)',
-                  border: `1px solid color-mix(in srgb, ${tech.color}, transparent ${100 - (parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--badge-border-alpha')) * 100 || 70)}%)`,
-                  cursor: 'default'
+                padding="0.65rem"
+                notchedSize={9}
+                notchedOffset={6}
+                notchedBorderWidth={1.25}
+                style={{
+                  '--accent-color': tech.color,
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.75rem',
+                  background: 'var(--card-bg)',
+                  borderColor: tech.color,
                 }}
               >
-                <img 
-                  src={tech.logo} 
-                  alt={tech.name} 
-                  style={{ 
-                    width: '18px', 
-                    height: '18px', 
-                    objectFit: 'contain',
-                    filter: tech.color.startsWith('var') ? 'var(--logo-icon-filter)' : 'none'
-                  }} 
-                />
-                <span style={{ fontSize: '0.8rem', fontWeight: '600', letterSpacing: '0.5px' }}>{tech.name}</span>
+                <div className="skill-card-icon-box">
+                  <img 
+                    src={tech.logo} 
+                    alt={tech.name} 
+                    style={{ 
+                      filter: tech.color.startsWith('var') ? 'var(--logo-icon-filter)' : 'none'
+                    }} 
+                  />
+                </div>
+                <span style={{ fontSize: '0.8rem', fontWeight: '600', letterSpacing: '0.5px', color: 'var(--text-primary)' }}>{tech.name}</span>
               </CyberCard>
             ))}
           </div>

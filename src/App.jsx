@@ -47,7 +47,7 @@ const HomePage = ({ theme, toggleTheme, terminalOpen, setTerminalOpen }) => {
       {terminalOpen && (
         <TerminalPortfolio onClose={() => setTerminalOpen(false)} />
       )}
-      <Chatbot />
+      {!terminalOpen && <Chatbot />}
     </>
   );
 };

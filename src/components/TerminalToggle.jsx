@@ -1,18 +1,19 @@
 import React from 'react';
-import { Terminal } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const TerminalToggle = ({ onClick }) => {
   return (
-    <button 
+    <motion.button 
       className="terminal-toggle"
       onClick={onClick}
       aria-label="Try Terminal Version"
+      initial={{ opacity: 0, x: -20 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ delay: 0.5 }}
     >
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-        <Terminal size={16} />
-        <span>TRY TERMINAL_V1.0</span>
-      </div>
-    </button>
+      <span className="terminal-prompt-icon">&gt;_</span>
+      <span className="terminal-text">TERMINAL_ACCESS</span>
+    </motion.button>
   );
 };
 

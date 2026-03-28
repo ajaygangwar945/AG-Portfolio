@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, GraduationCap, Briefcase, Heart, Sparkles, Rocket, Code2, Languages, BookOpen, Music, Gamepad2, Compass } from 'lucide-react';
@@ -9,7 +10,7 @@ const Card = ({ title, icon: Icon, iconColor, children, className = "", style = 
       accentColor="var(--about-accent)"
       padding="2rem"
       className={className}
-      style={{ 
+      style={{
         '--card-border': 'var(--about-accent-alpha)',
         '--primary-accent': 'var(--about-accent)',
         height: '100%',
@@ -23,7 +24,7 @@ const Card = ({ title, icon: Icon, iconColor, children, className = "", style = 
       {...framerProps}
     >
       <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.5rem' }}>
-        <div style={{ 
+        <div style={{
           padding: '0.5rem',
           borderRadius: '12px',
           backgroundColor: 'var(--about-accent-alpha)',
@@ -34,13 +35,13 @@ const Card = ({ title, icon: Icon, iconColor, children, className = "", style = 
         }}>
           {Icon && <Icon size={20} color={iconColor} />}
         </div>
-        <h3 style={{ 
-          fontSize: '1.25rem', 
+        <h3 style={{
+          fontSize: '1.25rem',
           color: 'var(--text-primary)',
           fontWeight: '700',
         }}>{title}</h3>
       </div>
-      
+
       <div style={{ flex: 1 }}>
         {children}
       </div>
@@ -51,7 +52,7 @@ const Card = ({ title, icon: Icon, iconColor, children, className = "", style = 
 const FactItem = ({ icon: Icon, title, value, iconColor }) => {
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem' }}>
-      <div style={{ 
+      <div style={{
         padding: '0.6rem',
         borderRadius: '50%',
         backgroundColor: 'var(--about-accent-alpha)',
@@ -72,11 +73,11 @@ const FactItem = ({ icon: Icon, title, value, iconColor }) => {
 
 const HobbyItem = ({ icon: Icon, label, iconColor }) => {
   return (
-    <div 
-      style={{ 
-        display: 'flex', 
-        alignItems: 'center', 
-        gap: '1rem', 
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: '1rem',
         padding: '1rem',
         borderRadius: '12px',
         backgroundColor: 'var(--about-accent-alpha)',
@@ -110,8 +111,8 @@ const About = () => {
           <div style={{ width: '100%', height: '1px', background: 'var(--card-border)' }} />
         </motion.div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 450px), 1fr))', gap: '2rem', maxWidth: '1100px', margin: '0 auto' }}>
-          
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 400px), 1fr))', gap: '2rem', maxWidth: '1100px', margin: '0 auto' }}>
+
           <Card title="Quick Facts" icon={Sparkles} iconColor="#fbbf24">
             <FactItem icon={MapPin} title="Location" value="Bareilly, Uttar Pradesh" iconColor="#ef4444" />
             <FactItem icon={GraduationCap} title="Education" value="B.Tech Computer Science @ LPU" iconColor="#3b82f6" />
@@ -121,10 +122,10 @@ const About = () => {
 
           <Card title="My Journey" icon={Rocket} iconColor="#8b5cf6">
             <p style={{ color: 'var(--text-primary)', marginBottom: '1.25rem', lineHeight: '1.7', fontSize: '0.95rem', fontWeight: '500', fontFamily: 'var(--font-body)' }}>
-              Hello! I'm <span style={{color: 'var(--about-accent)'}}>Ajay Gangwar</span>, a Computer Science and Engineering student at <span style={{color: 'var(--about-accent)'}}>LPU</span> with a strong interest in technology and software development.
+              Hello! I'm <span style={{ color: 'var(--about-accent)' }}>Ajay Gangwar</span>, a Computer Science and Engineering student at <span style={{ color: 'var(--about-accent)' }}>LPU</span> with a strong interest in technology and software development.
             </p>
             <p style={{ color: 'var(--text-dim)', marginBottom: '1.25rem', lineHeight: '1.7', fontSize: '0.95rem', fontFamily: 'var(--font-body)' }}>
-              My journey in tech began with curiosity about how software and websites work, which led me to learn <span style={{color: '#a78bfa'}}>C, C++, Java, and Python</span> and explore web development, data analysis, and algorithms.
+              My journey in tech began with curiosity about how software and websites work, which led me to learn <span style={{ color: '#a78bfa' }}>C, C++, Java, and Python</span> and explore web development, data analysis, and algorithms.
             </p>
             <p style={{ color: 'var(--text-dim)', lineHeight: '1.7', fontSize: '0.95rem', fontFamily: 'var(--font-body)' }}>
               I enjoy building practical projects, creating useful digital solutions, and continuously improving my skills by exploring new technologies.
@@ -134,9 +135,10 @@ const About = () => {
           <Card title="Interests" icon={Heart} iconColor="#ec4899">
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
               <HobbyItem icon={BookOpen} label="AI Research" iconColor="#eab308" />
+              <HobbyItem icon={Code2} label="Web Development" iconColor="#06b6d4" />
               <HobbyItem icon={Music} label="Classical & Lo-fi" iconColor="#8b5cf6" />
               <HobbyItem icon={Gamepad2} label="Gaming & Strategy" iconColor="#f43f5e" />
-              <HobbyItem icon={Code2} label="Web Development" iconColor="#06b6d4" />
+
             </div>
           </Card>
 

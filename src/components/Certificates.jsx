@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ShieldCheck, ExternalLink, Cpu, Code, Network, Layers, Database, Globe } from 'lucide-react';
@@ -20,7 +21,6 @@ const CertificateItem = ({ name, issuer, date, image, link, description, Icon })
       display: 'flex',
       flexDirection: 'column',
       overflow: 'hidden',
-      background: 'rgba(255, 255, 255, 0.02)',
       height: '100%'
     }}
   >
@@ -46,7 +46,14 @@ const CertificateItem = ({ name, issuer, date, image, link, description, Icon })
       />
     </div>
 
-    <div style={{ padding: '1.25rem', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ 
+      padding: '1.25rem', 
+      display: 'flex', 
+      flexDirection: 'column', 
+      backgroundColor: 'transparent',
+      backdropFilter: 'blur(10px)',
+      WebkitBackdropFilter: 'blur(10px)'
+    }}>
       <div>
         <h4 style={{
           color: 'var(--text-secondary)',
@@ -182,14 +189,33 @@ const Certificates = () => {
           </h2>
         </motion.div>
 
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
-          gap: '2rem'
-        }}>
+        <div className="three-col-grid">
           {certifications.map((cert, idx) => (
             <CertificateItem key={idx} {...cert} />
           ))}
+        </div>
+
+        {/* View All Certificates Link */}
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '4rem' }}>
+          <a 
+            href="https://certificates-docs-portal.vercel.app" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="btn btn-primary" 
+            style={{ 
+              padding: '0.8rem 2rem', 
+              fontSize: '0.8rem', 
+              letterSpacing: '2px',
+              background: 'var(--certificates-accent)',
+              color: 'var(--bg-color)',
+              borderColor: 'transparent',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.75rem'
+            }}
+          >
+            &gt; VIEW ALL CERTIFICATES <ExternalLink size={16} />
+          </a>
         </div>
       </div>
     </section>

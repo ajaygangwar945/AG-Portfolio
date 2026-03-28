@@ -40,8 +40,8 @@ const EducationItem = ({ school, degree, period, location, cgpa, logo, color = "
         </div>
       )}
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
-        <h4 style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', fontWeight: '800', fontFamily: 'var(--font-heading)', marginBottom: '0.5rem', minHeight: '3rem', display: 'flex', alignItems: 'center' }}>{school}</h4>
-        <p style={{ color, fontSize: '0.85rem', fontWeight: '700', fontFamily: 'var(--font-body)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '1.5rem' }}>{degree}</p>
+        <h4 style={{ color: 'var(--text-secondary)', fontSize: 'clamp(0.95rem, 3vw, 1.15rem)', fontWeight: '800', fontFamily: 'var(--font-heading)', marginBottom: '0.5rem', minHeight: '3rem', display: 'flex', alignItems: 'center', lineHeight: '1.2' }}>{school}</h4>
+        <p style={{ color, fontSize: '0.8rem', fontWeight: '700', fontFamily: 'var(--font-body)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '1.5rem', opacity: 0.9 }}>{degree}</p>
         
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: 'auto' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', color: 'var(--text-dim)', fontSize: '0.75rem', fontWeight: '700' }}>
@@ -57,7 +57,7 @@ const EducationItem = ({ school, degree, period, location, cgpa, logo, color = "
         {cgpa && (
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(255, 255, 255, 0.05)', padding: '0.5rem 1rem', borderRadius: '4px', border: '1px solid rgba(255, 255, 255, 0.1)', marginTop: '1.5rem' }}>
             <Award size={14} color="var(--warning-accent)" />
-            <span style={{ color: 'var(--text-primary)', fontWeight: '900', fontSize: '0.9rem' }}>GRADE: {cgpa}</span>
+            <span style={{ color: 'var(--text-primary)', fontWeight: '900', fontSize: 'clamp(0.8rem, 2.5vw, 0.9rem)' }}>GRADE: {cgpa}</span>
           </div>
         )}
       </div>
@@ -75,8 +75,8 @@ const Education = () => {
           viewport={{ once: true }}
           style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}
         >
-          <GraduationCap size={32} color="var(--education-accent)" />
-          <h2 style={{ fontSize: '2.5rem', fontFamily: 'var(--font-heading)', color: 'var(--text-secondary)' }}>
+          <GraduationCap size={32} color="var(--education-accent)" style={{ flexShrink: 0 }} />
+          <h2 style={{ fontSize: 'clamp(1.8rem, 5vw, 2.5rem)', fontFamily: 'var(--font-heading)', color: 'var(--text-secondary)' }}>
             Academic <span style={{ color: 'var(--education-accent)' }}>Journey</span>
           </h2>
         </motion.div>

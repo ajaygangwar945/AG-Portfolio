@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
@@ -78,19 +79,23 @@ const Resume = () => {
   };
 
   return (
-    <section id="resume" style={{ padding: '4rem 0', minHeight: '100vh', position: 'relative', overflow: 'hidden' }}>
+    <section id="resume" className="resume-section-mobile" style={{ padding: '4rem 0', minHeight: '100vh', position: 'relative', overflow: 'hidden' }}>
 
       
       <div className="container">
         {/* Terminal Header */}
-        <div style={{ marginBottom: '2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', borderBottom: '1px solid var(--card-border)', paddingBottom: '1rem' }}>
+        <div className="resume-header-flex" style={{ 
+          marginBottom: '2rem', 
+          borderBottom: '1px solid var(--card-border)', 
+          paddingBottom: '1rem',
+        }}>
           <div>
-            <h2 style={{ fontSize: '2.5rem', fontFamily: 'var(--font-heading)', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            <h2 style={{ fontSize: 'clamp(1.5rem, 5vw, 2.5rem)', fontFamily: 'var(--font-heading)', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: '1rem' }}>
               <FileText size={32} color="var(--resume-accent)" /> 
               Resume
             </h2>
           </div>
-          <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+          <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center', flexWrap: 'wrap', width: '100%', maxWidth: 'fit-content' }}>
             <motion.a 
                href={resumeUrl}
                target="_blank"
@@ -102,16 +107,18 @@ const Resume = () => {
                  alignItems: 'center', 
                  gap: '0.4rem', 
                  color: 'var(--text-primary)', 
-                 fontSize: '0.8rem', 
-                 padding: '0.6rem 1.2rem', 
+                 fontSize: '0.7rem', 
+                 padding: '0.5rem 1rem', 
                  borderColor: 'var(--card-border)',
                  background: 'transparent',
                  fontFamily: 'var(--font-heading)',
                  borderRadius: '4px',
-                 textTransform: 'uppercase'
+                 textTransform: 'uppercase',
+                 flex: '1 1 auto',
+                 justifyContent: 'center'
                }}
             >
-              <ExternalLink size={16} /> VIEW ONLINE
+              <ExternalLink size={14} /> VIEW
             </motion.a>
             <motion.a 
                href={resumeUrl}
@@ -124,31 +131,33 @@ const Resume = () => {
                  gap: '0.4rem', 
                  color: 'var(--bg-color)', 
                  background: 'var(--resume-accent)', 
-                 fontSize: '0.8rem', 
-                 padding: '0.6rem 1.2rem', 
+                 fontSize: '0.7rem', 
+                 padding: '0.5rem 1rem', 
                  borderColor: 'transparent',
                  fontFamily: 'var(--font-heading)',
                  borderRadius: '4px',
                  textTransform: 'uppercase',
-                 fontWeight: '800'
+                 fontWeight: '800',
+                 flex: '1 1 auto',
+                 justifyContent: 'center'
                }}
             >
-              <Download size={16} /> DOWNLOAD CV
+              <Download size={14} /> DOWNLOAD
             </motion.a>
           </div>
         </div>
 
         {/* Console Grid */}
-        <div className="resume-grid" style={{ 
+        <div className="resume-grid resume-grid-mobile" style={{ 
           display: 'grid', 
-          gridTemplateColumns: '320px 1fr', 
+          gridTemplateColumns: 'minmax(280px, 320px) 1fr', 
           gap: '2rem',
           alignItems: 'stretch'
         }}>
           
           {/* Left Panel: Identity Stats */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-            <CyberCard padding="1.5rem" accentColor="var(--resume-accent)" style={{ background: 'rgba(255,255,255,0.02)', height: '100%', display: 'flex', flexDirection: 'column' }}>
+            <CyberCard padding="1.5rem" accentColor="var(--resume-accent)" style={{ background: 'var(--card-bg)', backdropFilter: 'blur(10px)', height: '100%', display: 'flex', flexDirection: 'column' }}>
               <div style={{ marginBottom: '2rem' }}>
                 <div style={{ width: '60px', height: '60px', border: '1px solid var(--resume-accent)', marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
                    <User size={30} color="var(--resume-accent)" />
@@ -161,10 +170,10 @@ const Resume = () => {
                 {personalSpecs.map((spec, i) => (
                   <div key={i}>
                     <div style={{ fontSize: '0.6rem', color: 'var(--text-dim)', letterSpacing: '2px' }}>{spec.label}</div>
-                    <div style={{ fontSize: '0.85rem', color: 'var(--text-primary)', fontWeight: '700', marginTop: '0.2rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                       <spec.icon size={12} color="var(--resume-accent)" />
+                     <div className="resume-text-wrap" style={{ fontSize: '0.85rem', color: 'var(--text-primary)', fontWeight: '700', marginTop: '0.2rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                       <spec.icon size={12} color="var(--resume-accent)" style={{ flexShrink: 0 }} />
                        {spec.value}
-                    </div>
+                     </div>
                   </div>
                 ))}
               </div>
@@ -191,11 +200,20 @@ const Resume = () => {
           {/* Center Panel: Active Node Feed */}
           <div style={{ position: 'relative' }}>
              {/* Node Selector (Mini Hud) */}
-             <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem', overflowX: 'auto', paddingBottom: '0.5rem' }}>
+             <div style={{ 
+               display: 'flex', 
+               gap: '0.75rem', 
+               marginBottom: '2rem', 
+               overflowX: 'auto', 
+               paddingBottom: '0.5rem',
+               flexWrap: 'wrap', // Added wrap to prevent spill
+               justifyContent: 'flex-start'
+             }}>
                 {nodes.map(node => (
                   <button
                     key={node.id}
                     onClick={() => handleNodeClick(node.id)}
+                    className="btn-node-selector"
                     style={{
                       background: activeNode === node.id ? 'var(--resume-accent)' : 'transparent',
                       color: activeNode === node.id ? 'var(--bg-color)' : 'var(--text-dim)',
@@ -208,11 +226,12 @@ const Resume = () => {
                       display: 'flex',
                       alignItems: 'center',
                       gap: '0.5rem',
-                      whiteSpace: 'nowrap'
+                      whiteSpace: 'nowrap',
+                      clipPath: 'polygon(5% 0%, 100% 0%, 95% 100%, 0% 100%)' // Standardized slant
                     }}
                   >
                     <node.icon size={14} />
-                    {node.label}
+                    <span style={{ marginTop: '2px' }}>{node.label}</span>
                   </button>
                 ))}
              </div>
@@ -229,25 +248,25 @@ const Resume = () => {
                   transition={{ duration: 0.3 }}
                 >
                   {activeNode === 'EDUCATION' && data.EDUCATION.map((item, i) => (
-                    <div key={i} style={{ marginBottom: i === data.EDUCATION.length - 1 ? 0 : '1.5rem', padding: '1.5rem', border: '1px solid var(--card-border)', position: 'relative' }}>
+                    <div key={i} style={{ marginBottom: i === data.EDUCATION.length - 1 ? 0 : '1.5rem', padding: '1.5rem', border: '1px solid var(--card-border)', background: 'var(--card-bg)', backdropFilter: 'blur(10px)', position: 'relative' }}>
                       <div style={{ position: 'absolute', top: 0, left: 0, width: '4px', height: '100%', background: 'var(--resume-accent)' }} />
-                      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                        <h4 style={{ color: 'var(--text-secondary)', fontSize: '1.1rem' }}>{item.title}</h4>
-                        <span style={{ color: 'var(--resume-accent)', fontWeight: '800' }}>{item.stat}</span>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem' }}>
+                        <h4 style={{ color: 'var(--text-secondary)', fontSize: 'clamp(0.85rem, 2.8vw, 1.15rem)', lineHeight: '1.3', wordBreak: 'break-word' }}>{item.title}</h4>
+                        <span style={{ color: 'var(--resume-accent)', fontWeight: '800', fontSize: '0.8rem' }}>{item.stat}</span>
                       </div>
-                      <p style={{ color: 'var(--text-dim)', fontSize: '0.9rem', marginTop: '0.3rem' }}>{item.org}</p>
+                      <p style={{ color: 'var(--text-dim)', fontSize: '0.8rem', marginTop: '0.5rem' }}>{item.org}</p>
                       <div style={{ marginTop: '1rem', fontSize: '0.7rem', color: 'var(--text-dim)', letterSpacing: '1px' }}>DATED: {item.date}</div>
                     </div>
                   ))}
 
                   {activeNode === 'PROJECTS' && data.PROJECTS.map((item, i) => (
-                    <div key={i} style={{ marginBottom: i === data.PROJECTS.length - 1 ? 0 : '1.5rem', padding: '1.5rem', border: '1px solid var(--card-border)', cursor: 'default' }}>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                         <h4 style={{ color: 'var(--resume-accent)', fontSize: '1.3rem', fontFamily: 'var(--font-heading)' }}>{item.title}</h4>
-                         <span style={{ fontSize: '0.6rem', padding: '0.2rem 0.5rem', border: '1px solid var(--resume-accent)', color: 'var(--resume-accent)' }}>{item.tech}</span>
+                    <div key={i} style={{ marginBottom: i === data.PROJECTS.length - 1 ? 0 : '1.5rem', padding: '1.5rem', border: '1px solid var(--card-border)', background: 'var(--card-bg)', backdropFilter: 'blur(10px)', cursor: 'default' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '0.5rem' }}>
+                         <h4 style={{ color: 'var(--resume-accent)', fontSize: 'clamp(1rem, 4vw, 1.3rem)', fontFamily: 'var(--font-heading)', lineHeight: '1.2' }}>{item.title}</h4>
+                         <span style={{ fontSize: '0.6rem', padding: '0.2rem 0.5rem', border: '1px solid var(--resume-accent)', color: 'var(--resume-accent)', whiteSpace: 'nowrap' }}>{item.tech}</span>
                       </div>
-                      <p style={{ marginTop: '1rem', color: 'var(--text-primary)', fontSize: '0.95rem', lineHeight: '1.6' }}>
-                        <ChevronRight size={14} style={{ display: 'inline', marginRight: '0.5rem' }} color="var(--resume-accent)" />
+                      <p style={{ marginTop: '1rem', color: 'var(--text-primary)', fontSize: 'clamp(0.85rem, 2.5vw, 0.95rem)', lineHeight: '1.6' }}>
+                        <ChevronRight size={14} style={{ display: 'inline', marginRight: '0.5rem', flexShrink: 0 }} color="var(--resume-accent)" />
                         {item.desc}
                       </p>
                     </div>
@@ -268,7 +287,18 @@ const Resume = () => {
                   ))}
 
                   {activeNode === 'HONORS' && data.HONORS.map((item, i) => (
-                    <div key={i} style={{ display: 'flex', gap: '1.5rem', marginBottom: i === data.HONORS.length - 1 ? 0 : '1.5rem', alignItems: 'center' }}>
+                    <div key={i} style={{ 
+                      display: 'flex', 
+                      gap: '1.5rem', 
+                      marginBottom: i === data.HONORS.length - 1 ? 0 : '1.5rem', 
+                      alignItems: 'center',
+                      background: 'var(--card-bg)',
+                      backdropFilter: 'blur(10px)',
+                      padding: '1.5rem',
+                      border: '1px solid var(--card-border)',
+                      position: 'relative'
+                    }}>
+                      <div style={{ position: 'absolute', top: 0, left: 0, width: '4px', height: '100%', background: 'var(--resume-accent)' }} />
                        <div style={{ width: '60px', height: '60px', border: '1px solid var(--resume-accent)', color: 'var(--resume-accent)', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem', fontWeight: '900' }}>
                           {item.rank}
                        </div>
@@ -280,9 +310,13 @@ const Resume = () => {
                   ))}
 
                   {activeNode === 'SKILLS' && (
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+                    <div style={{ 
+                      display: 'grid', 
+                      gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', 
+                      gap: '1.25rem' 
+                    }}>
                        {data.SKILLS.map((group, i) => (
-                         <div key={i} style={{ padding: '1rem', border: '1px solid var(--card-border)' }}>
+                         <div key={i} style={{ padding: '1rem', border: '1px solid var(--card-border)', background: 'var(--card-bg)', backdropFilter: 'blur(10px)' }}>
                             <div style={{ fontSize: '0.7rem', color: 'var(--resume-accent)', fontWeight: '800', marginBottom: '1rem', borderBottom: '1px solid var(--resume-accent-alpha)', paddingBottom: '0.3rem' }}>
                                {group.cat}
                             </div>
@@ -308,6 +342,12 @@ const Resume = () => {
           @media (max-width: 1100px) {
             .resume-grid {
               grid-template-columns: 1fr !important;
+            }
+          }
+          @media (max-width: 480px) {
+            .btn-node-selector {
+              padding: 0.5rem 0.8rem !important;
+              font-size: 0.6rem !important;
             }
           }
         `}} />

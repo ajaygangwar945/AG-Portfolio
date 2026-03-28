@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Home, User, Layers, GraduationCap, Cpu, Compass, Box, Award, FileText, Mail, Menu, X, ShieldCheck } from 'lucide-react';
@@ -67,13 +68,36 @@ const Navbar = ({ theme, toggleTheme }) => {
       <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <motion.div 
           whileHover={{ x: 5 }}
-          style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: '1.2rem', fontWeight: '900', fontFamily: 'var(--font-heading)', cursor: 'pointer', color: 'var(--primary-accent)' }}
+          style={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: 'clamp(0.4rem, 2vw, 0.75rem)', 
+            fontSize: 'clamp(0.8rem, 4vw, 1.1rem)', 
+            fontWeight: '900', 
+            fontFamily: 'var(--font-heading)', 
+            cursor: 'pointer', 
+            color: 'var(--primary-accent)',
+            minWidth: 0,
+            flexShrink: 1
+          }}
           onClick={() => isProjectsPage ? window.location.href = '/' : window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
-          <div style={{ width: '32px', height: '32px', border: '2px solid var(--primary-accent)', display: 'flex', alignItems: 'center', justifyContent: 'center', transform: 'rotate(45deg)' }}>
-             <span style={{ transform: 'rotate(-45deg)', fontSize: '0.8rem' }}>AG</span>
+          <div style={{ 
+            width: 'clamp(20px, 5vw, 28px)', 
+            height: 'clamp(20px, 5vw, 28px)', 
+            border: '2px solid var(--primary-accent)', 
+            display: 'flex', 
+            alignItems: 'center', 
+            justifyContent: 'center', 
+            transform: 'rotate(45deg)',
+            flexShrink: 0 
+          }}>
+             <span style={{ transform: 'rotate(-45deg)', fontSize: 'clamp(0.45rem, 1.5vw, 0.55rem)' }}>AG</span>
           </div>
-          <span className="glitch-flicker" style={{ letterSpacing: '0.2rem' }}>PORTFOLIO</span>
+          <span className="glitch-flicker" style={{ letterSpacing: '0.05rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+            {/* PORTFOLIO -> AJAY on mobile if too narrow? No, just let it clamp */}
+            PORTFOLIO
+          </span>
         </motion.div>
         
         {/* Desktop Links */}
@@ -154,18 +178,18 @@ const Navbar = ({ theme, toggleTheme }) => {
                   }
                 }}
                 style={{
-                  padding: '1.25rem 2rem',
+                  padding: '1rem 1.5rem',
                   color: activeTab === link.id ? `var(--${link.id}-accent)` : 'var(--text-primary)',
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '1rem',
-                  fontSize: '0.9rem',
+                  gap: '0.75rem',
+                  fontSize: '0.8rem',
                   fontWeight: '700',
                   borderLeft: activeTab === link.id ? `4px solid var(--${link.id}-accent)` : '4px solid transparent',
                   background: activeTab === link.id ? `var(--${link.id}-accent-alpha, rgba(102, 252, 241, 0.05))` : 'transparent'
                 }}
               >
-                <link.icon size={18} />
+                <link.icon size={16} />
                 {link.name}
               </a>
             ))}
@@ -174,7 +198,7 @@ const Navbar = ({ theme, toggleTheme }) => {
       </AnimatePresence>
 
       <style jsx>{`
-        @media (max-width: 1100px) {
+        @media (max-width: 1024px) {
           .desktop-menu { display: none !important; }
           .mobile-toggle { display: block !important; }
         }

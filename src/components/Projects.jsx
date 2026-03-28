@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Github, ExternalLink, Activity, ScanLine, Heart, Box, Layers, Terminal, Globe, AppWindow, Cpu, Database, ShieldAlert, CloudRain, Scale, Map } from 'lucide-react';
@@ -44,13 +45,7 @@ export const ProjectCard = ({ title, description, tech, github, live, icon: Icon
           <Icon size={64} color={color || "var(--projects-accent)"} opacity={0.3} />
         </div>
       )}
-      <div style={{ 
-        position: 'absolute', 
-        inset: 0, 
-        background: 'linear-gradient(to bottom, transparent 60%, var(--bg-color) 100%)',
-        zIndex: 1
-      }} />
-      
+
       {/* Scanline Overlay */}
       <div className="scanlines" style={{ position: 'absolute', inset: 0, opacity: 0.1, zIndex: 2 }} />
 
@@ -88,7 +83,7 @@ export const ProjectCard = ({ title, description, tech, github, live, icon: Icon
       {/* Tech Stack */}
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem', marginBottom: '1.5rem' }}>
         {tech.map((t) => (
-          <CyberCard 
+          <CyberCard
             key={t}
             className="cyber-card-compact"
             padding="0.25rem 0.61rem"
@@ -99,7 +94,7 @@ export const ProjectCard = ({ title, description, tech, github, live, icon: Icon
               fontSize: '0.65rem',
               color: color || 'var(--projects-accent)',
               background: 'var(--badge-bg)',
-              border: `1px solid ${color || 'var(--projects-accent)'}`, 
+              border: `1px solid ${color || 'var(--projects-accent)'}`,
               opacity: 1,
               fontWeight: '700',
               fontFamily: 'var(--font-body)',
@@ -119,11 +114,11 @@ export const ProjectCard = ({ title, description, tech, github, live, icon: Icon
         paddingTop: '1rem',
         borderTop: `1px solid ${color || 'var(--card-border)'}`
       }}>
-        <a href={github} target="_blank" rel="noopener noreferrer" className="btn btn-secondary" style={{ 
-          padding: '0.4rem 0.8rem', 
-          fontSize: '0.7rem', 
-          display: 'flex', 
-          alignItems: 'center', 
+        <a href={github} target="_blank" rel="noopener noreferrer" className="btn btn-secondary" style={{
+          padding: '0.4rem 0.8rem',
+          fontSize: '0.7rem',
+          display: 'flex',
+          alignItems: 'center',
           gap: '0.4rem',
           borderColor: color || 'var(--projects-accent)',
           color: color || 'var(--projects-accent)',
@@ -132,11 +127,11 @@ export const ProjectCard = ({ title, description, tech, github, live, icon: Icon
           <Github size={14} /> Source Code
         </a>
         {live && (
-          <a href={live} target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ 
-            padding: '0.4rem 0.8rem', 
-            fontSize: '0.7rem', 
-            display: 'flex', 
-            alignItems: 'center', 
+          <a href={live} target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{
+            padding: '0.4rem 0.8rem',
+            fontSize: '0.7rem',
+            display: 'flex',
+            alignItems: 'center',
             gap: '0.4rem',
             background: color || 'var(--projects-accent)',
             color: 'var(--bg-color)',
@@ -161,7 +156,7 @@ const Projects = () => {
   return (
     <section id="projects" style={{ padding: '4rem 0', minHeight: '100vh', display: 'flex', alignItems: 'center' }}>
       <div className="container">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           style={{ marginBottom: '2rem' }}
@@ -201,11 +196,7 @@ const Projects = () => {
           ))}
         </div>
 
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
-          gap: '2rem'
-        }}>
+        <div className="three-col-grid">
           <AnimatePresence mode='popLayout'>
             {filteredProjects.map((project) => (
               <ProjectCard key={project.uid} {...project} />
@@ -215,9 +206,9 @@ const Projects = () => {
 
         {activeTab === 'All' && allProjects.length > 6 && (
           <div style={{ display: 'flex', justifyContent: 'center', marginTop: '4rem' }}>
-            <a href="/projects" className="btn btn-primary" style={{ 
-              padding: '0.8rem 2rem', 
-              fontSize: '0.8rem', 
+            <a href="/projects" className="btn btn-primary" style={{
+              padding: '0.8rem 2rem',
+              fontSize: '0.8rem',
               letterSpacing: '2px',
               background: 'var(--projects-accent)',
               color: 'var(--bg-color)',

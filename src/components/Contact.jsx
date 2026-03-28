@@ -12,7 +12,8 @@ const ContactItem = ({ icon: Icon, label, value, link, color }) => (
     accentColor={color}
       style={{ 
         padding: '1.5rem', 
-        background: 'rgba(255, 255, 255, 0.02)',
+        background: 'var(--card-bg)',
+        backdropFilter: 'blur(10px)',
         display: 'flex',
         alignItems: 'center',
         gap: '1.5rem',

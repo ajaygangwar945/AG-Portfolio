@@ -10,8 +10,11 @@ const CyberCard = ({
   notchedSize = 20,
   notchedOffset = 10,
   notchedBorderWidth = 1,
+  disableHover = false,
   ...motionProps 
 }) => {
+  const { whileHover: userWhileHover, ...restMotion } = motionProps;
+
   return (
     <motion.div
       className={`cyber-card ${className}`}
@@ -22,12 +25,16 @@ const CyberCard = ({
         boxShadow: `0 0 10px color-mix(in srgb, ${accentColor}, transparent 90%)`, // 10% opacity
         ...style 
       }}
-      whileHover={{ 
-        borderColor: accentColor,
-        boxShadow: `0 0 20px color-mix(in srgb, ${accentColor}, transparent 70%)`, // 30% opacity
-        ...motionProps.whileHover 
-      }}
-      {...motionProps}
+      {...restMotion}
+      whileHover={
+        disableHover
+          ? undefined
+          : {
+              borderColor: accentColor,
+              boxShadow: `0 0 20px color-mix(in srgb, ${accentColor}, transparent 70%)`, // 30% opacity
+              ...userWhileHover,
+            }
+      }
     >
       {/* HUD Corner Accents */}
       <div style={{ position: 'absolute', top: `${notchedOffset}px`, left: `${notchedOffset}px`, width: `${notchedSize}px`, height: `${notchedSize}px`, borderTop: `${notchedBorderWidth}px solid ${accentColor}`, borderLeft: `${notchedBorderWidth}px solid ${accentColor}`, zIndex: 10 }} />
