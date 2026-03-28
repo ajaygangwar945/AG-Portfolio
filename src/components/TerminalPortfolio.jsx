@@ -1,42 +1,77 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 // Prompt prefix — declared at module scope to avoid re-creating on each render
-const Prompt = () => (
-  <span className="term-prompt-prefix">
-    <span className="term-prompt-user">ajaygangwar945</span>
-    <span className="term-prompt-at">@</span>
-    <span className="term-prompt-host">ag-portfolio</span>
-    <span className="term-prompt-sep">:</span>
-    <span className="term-prompt-path">~</span>
-    <span className="term-prompt-arrow">%</span>
-  </span>
-);
+const Prompt = ({ compact = false }) => {
+  if (compact) {
+    return (
+      <span className="term-prompt-prefix">
+        <span className="term-prompt-path">~</span>
+        <span className="term-prompt-arrow">%</span>
+      </span>
+    );
+  }
+
+  return (
+    <span className="term-prompt-prefix">
+      <span className="term-prompt-user">ajaygangwar945</span>
+      <span className="term-prompt-at">@</span>
+      <span className="term-prompt-host">ag-portfolio</span>
+      <span className="term-prompt-sep">:</span>
+      <span className="term-prompt-path">~</span>
+      <span className="term-prompt-arrow">%</span>
+    </span>
+  );
+};
+
+const getInitialHistory = () => {
+  const base = [
+    { type: 'output', content: 'Last login: ' + new Date().toDateString(), cls: 'dim' },
+    { type: 'output', content: ' ', cls: 'dim' },
+  ];
+
+  const banner = [
+    { type: 'output', content: '  █████╗  ██████╗      ██████╗  ██████╗ ██████╗ ████████╗███████╗ ██████╗ ██╗     ██╗ ██████╗ ', cls: 'info desktop-banner' },
+    { type: 'output', content: ' ██╔══██╗██╔════╝     ██╔══██╗██╔═══██╗██╔══██╗╚══██╔══╝██╔════╝██╔═══██╗██║     ██║██╔═══██╗', cls: 'info desktop-banner' },
+    { type: 'output', content: ' ███████║██║  ███╗    ██████╔╝██║   ██║██████╔╝   ██║   █████╗  ██║   ██║██║     ██║██║   ██║', cls: 'info desktop-banner' },
+    { type: 'output', content: ' ██╔══██║██║   ██║    ██╔═══╝ ██║   ██║██╔══██╗   ██║   ██╔══╝  ██║   ██║██║     ██║██║   ██║', cls: 'info desktop-banner' },
+    { type: 'output', content: ' ██║  ██║╚██████╔╝    ██║     ╚██████╔╝██║  ██║   ██║   ██║     ╚██████╔╝███████╗██║╚██████╔╝', cls: 'info desktop-banner' },
+    { type: 'output', content: ' ╚═╝  ╚═╝ ╚═════╝     ╚═╝      ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝      ╚═════╝ ╚══════╝╚═╝ ╚═════╝ ', cls: 'info desktop-banner' },
+    { type: 'output', content: '   █████╗  ██████╗ ', cls: 'info mobile-banner' },
+    { type: 'output', content: '  ██╔══██╗██╔════╝ ', cls: 'info mobile-banner' },
+    { type: 'output', content: '  ███████║██║  ███╗', cls: 'info mobile-banner' },
+    { type: 'output', content: '  ██╔══██║██║   ██║', cls: 'info mobile-banner' },
+    { type: 'output', content: '  ██║  ██║╚██████╔╝', cls: 'info mobile-banner' },
+    { type: 'output', content: '  ╚═╝  ╚═╝ ╚═════╝ ', cls: 'info mobile-banner' },
+    { type: 'output', content: '  ------------------', cls: 'dim mobile-banner' },
+  ];
+
+  const details = [
+    { type: 'output', content: ' ', cls: 'dim' },
+    { type: 'output', content: '  Welcome to AG-Portfolio Terminal  |  Aspiring Data Scientist & AI Engineer', cls: 'heading' },
+    { type: 'output', content: '  ─────────────────────────────────────────────────────────────────────────', cls: 'dim desktop-divider' },
+    { type: 'output', content: '  --------------------------------', cls: 'dim mobile-divider' },
+    { type: 'output', content: '  User     :  Ajay Gangwar', cls: 'output' },
+    { type: 'output', content: '  Role     :  Data Scientist · AI/ML Engineer · Full-Stack Developer', cls: 'output' },
+    { type: 'output', content: '  Location :  India', cls: 'output' },
+    { type: 'output', content: '  GitHub   :  github.com/ajaygangwar945', cls: 'output' },
+    { type: 'output', content: '  ─────────────────────────────────────────────────────────────────────────', cls: 'dim desktop-divider' },
+    { type: 'output', content: '  --------------------------------', cls: 'dim mobile-divider' },
+    { type: 'output', content: ' ', cls: 'dim' },
+    { type: 'output', content: '  Type "help" to see all available commands.', cls: 'output' },
+    { type: 'output', content: ' ', cls: 'dim' },
+  ];
+
+  return [...base, ...banner, ...details];
+};
 
 const TerminalPortfolio = ({ onClose }) => {
   const [input, setInput]       = useState('');
   // 'full' = fullscreen, 'windowed' = centered panel
   const [mode, setMode]         = useState('full');
-  const [history, setHistory]   = useState([
-    { type: 'output', content: 'Last login: ' + new Date().toDateString(), cls: 'dim' },
-    { type: 'output', content: ' ', cls: 'dim' },
-    { type: 'output', content: '  █████╗  ██████╗      ██████╗  ██████╗ ██████╗ ████████╗███████╗ ██████╗ ██╗     ██╗ ██████╗ ', cls: 'info' },
-    { type: 'output', content: ' ██╔══██╗██╔════╝     ██╔══██╗██╔═══██╗██╔══██╗╚══██╔══╝██╔════╝██╔═══██╗██║     ██║██╔═══██╗', cls: 'info' },
-    { type: 'output', content: ' ███████║██║  ███╗    ██████╔╝██║   ██║██████╔╝   ██║   █████╗  ██║   ██║██║     ██║██║   ██║', cls: 'info' },
-    { type: 'output', content: ' ██╔══██║██║   ██║    ██╔═══╝ ██║   ██║██╔══██╗   ██║   ██╔══╝  ██║   ██║██║     ██║██║   ██║', cls: 'info' },
-    { type: 'output', content: ' ██║  ██║╚██████╔╝    ██║     ╚██████╔╝██║  ██║   ██║   ██║     ╚██████╔╝███████╗██║╚██████╔╝', cls: 'info' },
-    { type: 'output', content: ' ╚═╝  ╚═╝ ╚═════╝     ╚═╝      ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝      ╚═════╝ ╚══════╝╚═╝ ╚═════╝ ', cls: 'info' },
-    { type: 'output', content: ' ', cls: 'dim' },
-    { type: 'output', content: '  Welcome to AG-Portfolio Terminal  |  Aspiring Data Scientist & AI Engineer', cls: 'heading' },
-    { type: 'output', content: '  ─────────────────────────────────────────────────────────────────────────', cls: 'dim' },
-    { type: 'output', content: '  User     :  Ajay Gangwar', cls: 'output' },
-    { type: 'output', content: '  Role     :  Data Scientist · AI/ML Engineer · Full-Stack Developer', cls: 'output' },
-    { type: 'output', content: '  Location :  India', cls: 'output' },
-    { type: 'output', content: '  GitHub   :  github.com/ajaygangwar945', cls: 'output' },
-    { type: 'output', content: '  ─────────────────────────────────────────────────────────────────────────', cls: 'dim' },
-    { type: 'output', content: ' ', cls: 'dim' },
-    { type: 'output', content: '  Type "help" to see all available commands.', cls: 'output' },
-    { type: 'output', content: ' ', cls: 'dim' },
-  ]);
+  const [isCompactViewport, setIsCompactViewport] = useState(() => window.innerWidth <= 820);
+  const [isMobileViewport, setIsMobileViewport] = useState(() => window.innerWidth <= 600);
+  const [showMaximiseButton, setShowMaximiseButton] = useState(() => window.innerWidth > 820);
+  const [history, setHistory] = useState(() => getInitialHistory());
 
   const bodyRef  = useRef(null);
   const inputRef = useRef(null);
@@ -55,10 +90,30 @@ const TerminalPortfolio = ({ onClose }) => {
     inputRef.current?.focus();
   }, [history]);
 
+  useEffect(() => {
+    const onResize = () => {
+      setIsCompactViewport(window.innerWidth <= 820);
+      setIsMobileViewport(window.innerWidth <= 600);
+      setShowMaximiseButton(window.innerWidth > 820);
+    };
+
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
+
+  useEffect(() => {
+    if (!showMaximiseButton && mode === 'windowed') {
+      setMode('full');
+    }
+  }, [showMaximiseButton, mode]);
+
   // ── Traffic light handlers ──────────────────────────────
   const handleClose    = () => onClose();                        // red  → close entirely
   const handleMinimise = () => onClose();                        // yellow → hide (back to toggle btn)
-  const handleMaximise = () => setMode(m => m === 'full' ? 'windowed' : 'full'); // green → toggle
+  const handleMaximise = () => {
+    if (isCompactViewport) return;
+    setMode(m => m === 'full' ? 'windowed' : 'full');
+  }; // green → toggle
 
   // ── Commands ────────────────────────────────────────────
   const commands = {
@@ -129,14 +184,27 @@ const TerminalPortfolio = ({ onClose }) => {
   // Windowed: backdrop + centered panel; Fullscreen: fills screen
   const outerStyle = isFullscreen
     ? { position: 'fixed', inset: 0, zIndex: 10000, background: 'var(--terminal-bg)', display: 'flex', flexDirection: 'column', overflow: 'hidden' }
-    : { position: 'fixed', inset: 0, zIndex: 10000, background: 'rgba(0,0,0,0.55)', display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(6px)', WebkitBackdropFilter: 'blur(6px)' };
+    : { position: 'fixed', inset: 0, zIndex: 10000, background: 'rgba(0,0,0,0.55)', display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(6px)', WebkitBackdropFilter: 'blur(6px)', padding: '12px' };
 
   const innerStyle = isFullscreen
     ? { width: '100%', height: '100%', background: 'var(--terminal-bg)', borderRadius: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden', fontFamily: "'SF Mono','Menlo','Monaco','Consolas','JetBrains Mono',monospace", fontSize: '0.9rem' }
-    : { width: '100%', maxWidth: 860, height: 520, background: 'var(--terminal-bg)', borderRadius: 12, display: 'flex', flexDirection: 'column', overflow: 'hidden', fontFamily: "'SF Mono','Menlo','Monaco','Consolas','JetBrains Mono',monospace", fontSize: '0.9rem', boxShadow: '0 32px 80px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.08)' };
+    : {
+      width: isCompactViewport ? '100%' : 'min(92vw, 860px)',
+      maxWidth: isCompactViewport ? '100%' : 860,
+      height: isCompactViewport ? '100%' : 'min(82vh, 560px)',
+      maxHeight: isCompactViewport ? '100%' : 'calc(100dvh - 24px)',
+      background: 'var(--terminal-bg)',
+      borderRadius: isCompactViewport ? 0 : 12,
+      display: 'flex',
+      flexDirection: 'column',
+      overflow: 'hidden',
+      fontFamily: "'SF Mono','Menlo','Monaco','Consolas','JetBrains Mono',monospace",
+      fontSize: '0.9rem',
+      boxShadow: isCompactViewport ? 'none' : '0 32px 80px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.08)'
+    };
 
   return (
-    <div style={outerStyle} onClick={() => inputRef.current?.focus()}>
+    <div className={`terminal-shell ${isFullscreen ? 'full' : 'windowed'}`} style={outerStyle} onClick={() => inputRef.current?.focus()}>
       <div style={innerStyle} onClick={e => e.stopPropagation()}>
 
         {/* ── Title Bar ── */}
@@ -155,15 +223,17 @@ const TerminalPortfolio = ({ onClose }) => {
               onClick={handleMinimise}
             />
             {/* 🟢 Fullscreen ↔ Windowed */}
-            <div
-              className="traffic-light maximise"
-              title={isFullscreen ? 'Exit Full Screen' : 'Enter Full Screen'}
-              onClick={handleMaximise}
-            />
+            {showMaximiseButton && (
+              <div
+                className="traffic-light maximise"
+                title={isFullscreen ? 'Exit Full Screen' : 'Enter Full Screen'}
+                onClick={handleMaximise}
+              />
+            )}
           </div>
           <span className="terminal-titlebar-title">
             ajaygangwar945@ag-portfolio — bash
-            {!isFullscreen && <span style={{ marginLeft: 8, fontSize: '0.7rem', opacity: 0.5 }}>[windowed]</span>}
+            {!isFullscreen && !isCompactViewport && <span style={{ marginLeft: 8, fontSize: '0.7rem', opacity: 0.5 }}>[windowed]</span>}
           </span>
         </div>
 
@@ -173,7 +243,7 @@ const TerminalPortfolio = ({ onClose }) => {
             <div key={i} className="term-line">
               {entry.type === 'input' ? (
                 <>
-                  <Prompt />
+                  <Prompt compact={isMobileViewport} />
                   <span className="term-input-text">&nbsp;{entry.content}</span>
                 </>
               ) : (
@@ -184,7 +254,7 @@ const TerminalPortfolio = ({ onClose }) => {
 
           {/* Active input row */}
           <div className="terminal-prompt-row term-line">
-            <Prompt />
+            <Prompt compact={isMobileViewport} />
             &nbsp;
             <input
               ref={inputRef}
