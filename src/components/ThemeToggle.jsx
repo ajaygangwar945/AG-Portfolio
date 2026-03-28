@@ -8,6 +8,7 @@ const ThemeToggle = ({ theme, toggleTheme }) => {
       whileHover={{ scale: 1.1, rotate: 5 }}
       whileTap={{ scale: 0.9 }}
       onClick={toggleTheme}
+      className="theme-toggle-btn"
       style={{
         background: 'transparent',
         border: '1px solid var(--primary-accent)',

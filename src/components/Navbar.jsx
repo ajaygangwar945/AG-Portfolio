@@ -48,7 +48,7 @@ const Navbar = ({ theme, toggleTheme }) => {
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
 
   return (
-    <motion.nav 
+    <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className="navbar"
@@ -66,46 +66,45 @@ const Navbar = ({ theme, toggleTheme }) => {
       }}
     >
       <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <motion.div 
+        <motion.div
           whileHover={{ x: 5 }}
-          style={{ 
-            display: 'flex', 
-            alignItems: 'center', 
-            gap: 'clamp(0.4rem, 2vw, 0.75rem)', 
-            fontSize: 'clamp(0.8rem, 4vw, 1.1rem)', 
-            fontWeight: '900', 
-            fontFamily: 'var(--font-heading)', 
-            cursor: 'pointer', 
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 'clamp(0.4rem, 2vw, 0.75rem)',
+            fontSize: 'clamp(0.8rem, 4vw, 1.1rem)',
+            fontWeight: '900',
+            fontFamily: 'var(--font-heading)',
+            cursor: 'pointer',
             color: 'var(--primary-accent)',
             minWidth: 0,
             flexShrink: 1
           }}
           onClick={() => isProjectsPage ? window.location.href = '/' : window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
-          <div style={{ 
-            width: 'clamp(20px, 5vw, 28px)', 
-            height: 'clamp(20px, 5vw, 28px)', 
-            border: '2px solid var(--primary-accent)', 
-            display: 'flex', 
-            alignItems: 'center', 
-            justifyContent: 'center', 
+          <div style={{
+            width: 'clamp(20px, 5vw, 28px)',
+            height: 'clamp(20px, 5vw, 28px)',
+            border: '2px solid var(--primary-accent)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
             transform: 'rotate(45deg)',
-            flexShrink: 0 
+            flexShrink: 0
           }}>
-             <span style={{ transform: 'rotate(-45deg)', fontSize: 'clamp(0.45rem, 1.5vw, 0.55rem)' }}>AG</span>
+            <span style={{ transform: 'rotate(-45deg)', fontSize: 'clamp(0.45rem, 1.5vw, 0.55rem)' }}>AG</span>
           </div>
           <span className="glitch-flicker" style={{ letterSpacing: '0.05rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-            {/* PORTFOLIO -> AJAY on mobile if too narrow? No, just let it clamp */}
             PORTFOLIO
           </span>
         </motion.div>
-        
+
         {/* Desktop Links */}
         <ul className="desktop-menu" style={{ display: 'flex', gap: '0.1rem', alignItems: 'center', listStyle: 'none' }}>
           {navLinks.map((link) => (
             <li key={link.name}>
-              <motion.a 
-                whileHover={{ 
+              <motion.a
+                whileHover={{
                   backgroundColor: `var(--${link.id}-accent-alpha, rgba(102, 252, 241, 0.1))`,
                   color: `var(--${link.id}-accent)`
                 }}
@@ -122,7 +121,7 @@ const Navbar = ({ theme, toggleTheme }) => {
                   color: activeTab === link.id ? `var(--${link.id}-accent)` : 'var(--text-primary)',
                   padding: '0.5rem 0.75rem',
                   fontFamily: 'var(--font-body)',
-                  fontSize: '0.65rem',
+                  fontSize: '0.8rem',
                   fontWeight: '600',
                   textTransform: 'uppercase',
                   borderBottom: activeTab === link.id ? `2px solid var(--${link.id}-accent)` : '2px solid transparent',
@@ -132,7 +131,7 @@ const Navbar = ({ theme, toggleTheme }) => {
                   transition: '0.2s'
                 }}
               >
-                <link.icon size={12} />
+                <link.icon size={14} />
                 <span className={activeTab === link.id ? 'glitch-flicker' : ''}>{link.name}</span>
               </motion.a>
             </li>
@@ -141,7 +140,7 @@ const Navbar = ({ theme, toggleTheme }) => {
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
           <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
-          
+
           {/* Mobile Menu Toggle */}
           <div className="mobile-toggle" onClick={toggleMobileMenu} style={{ cursor: 'pointer', color: 'var(--primary-accent)', display: 'none' }}>
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -165,7 +164,7 @@ const Navbar = ({ theme, toggleTheme }) => {
             }}
           >
             {navLinks.map((link) => (
-              <a 
+              <a
                 key={link.name}
                 href={isProjectsPage ? `/#${link.id}` : `#${link.id}`}
                 onClick={(e) => {

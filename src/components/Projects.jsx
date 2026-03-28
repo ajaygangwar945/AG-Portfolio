@@ -85,7 +85,7 @@ export const ProjectCard = ({ title, description, tech, github, live, icon: Icon
         {tech.map((t) => (
           <CyberCard
             key={t}
-            className="cyber-card-compact"
+            className="cyber-card cyber-card-compact"
             padding="0.25rem 0.61rem"
             accentColor={color || 'var(--projects-accent)'}
             notchedSize={6}
@@ -93,7 +93,7 @@ export const ProjectCard = ({ title, description, tech, github, live, icon: Icon
             style={{
               fontSize: '0.65rem',
               color: color || 'var(--projects-accent)',
-              background: 'var(--badge-bg)',
+              background: 'transparent',
               border: `1px solid ${color || 'var(--projects-accent)'}`,
               opacity: 1,
               fontWeight: '700',

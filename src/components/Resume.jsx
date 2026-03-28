@@ -110,44 +110,33 @@ const Resume = () => {
                rel="noopener noreferrer"
                className="btn btn-secondary"
                whileHover={{ y: -2 }}
-               style={{ 
-                 display: 'flex', 
-                 alignItems: 'center', 
-                 gap: '0.4rem', 
-                 color: 'var(--text-primary)', 
-                 fontSize: '0.7rem', 
-                 padding: '0.5rem 1rem', 
-                 borderColor: 'var(--card-border)',
-                 background: 'transparent',
-                 fontFamily: 'var(--font-heading)',
-                 borderRadius: '4px',
-                 textTransform: 'uppercase',
-                 flex: '1 1 auto',
-                 justifyContent: 'center'
+               style={{
+                 padding: '0.4rem 0.8rem',
+                 fontSize: '0.7rem',
+                 display: 'flex',
+                 alignItems: 'center',
+                 gap: '0.4rem',
+                 borderColor: 'var(--resume-accent)',
+                 color: 'var(--resume-accent)',
+                 background: 'transparent'
                }}
             >
-              <ExternalLink size={14} /> VIEW
+              <ExternalLink size={14} /> VIEW ONLINE
             </motion.a>
             <motion.a 
                href={resumeUrl}
                download="Ajay_Gangwar_Resume.pdf"
                className="btn btn-primary"
                whileHover={{ y: -2 }}
-               style={{ 
-                 display: 'flex', 
-                 alignItems: 'center', 
-                 gap: '0.4rem', 
-                 color: 'var(--bg-color)', 
-                 background: 'var(--resume-accent)', 
-                 fontSize: '0.7rem', 
-                 padding: '0.5rem 1rem', 
-                 borderColor: 'transparent',
-                 fontFamily: 'var(--font-heading)',
-                 borderRadius: '4px',
-                 textTransform: 'uppercase',
-                 fontWeight: '800',
-                 flex: '1 1 auto',
-                 justifyContent: 'center'
+               style={{
+                 padding: '0.4rem 0.8rem',
+                 fontSize: '0.7rem',
+                 display: 'flex',
+                 alignItems: 'center',
+                 gap: '0.4rem',
+                 background: 'var(--resume-accent)',
+                 color: 'var(--bg-color)',
+                 borderColor: 'transparent'
                }}
             >
               <Download size={14} /> DOWNLOAD

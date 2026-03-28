@@ -98,7 +98,7 @@ const Hero = () => {
             I specialize in bridging the gap between complex datasets and intelligent neural solutions using state-of-the-art AI/ML architectures.
           </p>
 
-          <div className="hero-skills" style={{ flexWrap: 'wrap', justifyContent: 'center' }}>
+          <div className="hero-skills">
             {skills.map((skill, index) => {
               const logoUrl =
                 skill.customLogo ||
@@ -115,49 +115,49 @@ const Hero = () => {
                   transition={{ delay: 1 + index * 0.1 }}
                   accentColor={skill.color}
                   notchedSize={8}
-                  notchedOffset={4}
+                  notchedOffset={5}
                   notchedBorderWidth={1}
-                  className="skill-card-main hero-skill-card cyber-card-compact"
+                  className="hero-skill-card cyber-card-compact"
                   padding="0.65rem"
                   style={{
                     '--accent-color': skill.color,
-                    background: 'var(--card-bg)',
+                    position: 'relative',
                     borderColor: skill.color,
-                    flex: '0 1 auto' // Allow shrinking
+                    boxShadow: `0 0 10px color-mix(in srgb, ${skill.color} 10%, transparent)`,
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.75rem',
+                    background: 'var(--card-bg)',
+                    flex: '0 0 auto'
                   }}
                 >
-                  <div className="skill-card-scanline" aria-hidden />
-                  <div className="skill-card-top">
-                    <div className="skill-card-icon-box">
-                      <img
-                        src={logoUrl}
-                        alt={skill.name}
-                        style={{
-                          maxWidth: '100%',
-                          maxHeight: '100%',
-                          objectFit: 'contain',
-                          filter: skill.color.startsWith('var')
-                            ? 'var(--logo-icon-filter)'
-                            : 'none',
-                        }}
-                        onError={(e) => {
-                          e.target.style.display = 'none';
-                          const next = e.target.nextSibling;
-                          if (next && next.style) next.style.display = 'block';
-                        }}
+                  <div className="skill-card-icon-box">
+                    <img
+                      src={logoUrl}
+                      alt={skill.name}
+                      style={{
+                        maxWidth: '100%',
+                        maxHeight: '100%',
+                        objectFit: 'contain',
+                        filter: skill.color.startsWith('var')
+                          ? 'var(--logo-icon-filter)'
+                          : 'none',
+                      }}
+                      onError={(e) => {
+                        e.target.style.display = 'none';
+                        const next = e.target.nextSibling;
+                        if (next && next.style) next.style.display = 'block';
+                      }}
+                    />
+                    {Icon && (
+                      <Icon
+                        size={14}
+                        color={skill.color}
+                        style={{ display: 'none' }}
                       />
-                      {Icon && (
-                        <Icon
-                          size={18}
-                          color={skill.color}
-                          style={{ display: 'none' }}
-                        />
-                      )}
-                    </div>
-                    <h4 className="skill-card-name hero-skill-card-title">
-                      {skill.name}
-                    </h4>
+                    )}
                   </div>
+                  <h4 className="skill-card-name">{skill.name}</h4>
                 </CyberCard>
               );
             })}

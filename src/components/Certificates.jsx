@@ -30,7 +30,7 @@ const CertificateItem = ({ name, issuer, date, image, link, description, Icon })
       width: '100%',
       height: '250px',
       overflow: 'hidden',
-      borderBottom: '2px solid rgba(var(--certificates-accent-rgb), 0.2)'
+      borderBottom: '1px solid var(--certificates-accent)'
     }}>
       <img
         src={image}

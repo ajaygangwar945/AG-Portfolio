@@ -28,21 +28,22 @@ const AchievementCard = ({ title, award, date, icon: Icon, color, image }) => {
     >
       {image && (
         <div style={{
-          width: '110%',
+          width: 'calc(100% + 3rem)',
           height: '180px',
           margin: '-1.5rem -1.5rem 0.5rem -1.5rem',
           overflow: 'hidden',
           position: 'relative',
-          borderBottom: `1px solid color-mix(in srgb, ${color}, transparent 70%)`,
-          clipPath: 'polygon(0 0, 100% 0, 100% 90%, 95% 100%, 0 100%)'
+          borderBottom: `1px solid ${color}`
         }}>
           <motion.img
             src={image}
             alt={title}
             style={{
+              display: 'block',
               width: '100%',
               height: '100%',
               objectFit: 'cover',
+              objectPosition: 'center',
               filter: 'brightness(0.8) contrast(1.2) sepia(0.2)',
             }}
             whileHover={{ scale: 1.1, filter: 'brightness(1) contrast(1.1) sepia(0)' }}
