@@ -10,7 +10,7 @@
 [![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
 [![Framer Motion](https://img.shields.io/badge/Framer_Motion-black?style=for-the-badge&logo=framer&logoColor=blue)](https://www.framer.com/motion/)
 [![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen?style=for-the-badge&logo=google-chrome&logoColor=white)](https://www.ajaygangwar945.xyz)
-
+[![Vercel Deployment](https://img.shields.io/badge/Vercel-Deployed-black?style=for-the-badge&logo=vercel&logoColor=white)](https://ajaygangwar-portfolio.vercel.app/)
 ---
 
 Welcome to the **AG-Portfolio**, a state-of-the-art web application that pushes the boundaries of traditional portfolio design. Built with **React 19** and **Vite**, this project features a unique high-tech interface, a fully functional **Terminal Mode**, and an **AI-powered Chatbot** driven by Google Gemini.
