@@ -100,7 +100,7 @@ const Skills = () => {
     : allSkills.filter(skill => skill.category === activeTab);
 
   return (
-    <section id="skills" style={{ padding: '4rem 0', minHeight: '100vh', display: 'flex', alignItems: 'center' }}>
+    <section id="skills" style={{ minHeight: '100vh', display: 'flex', alignItems: 'flex-start' }}>
       <div className="container">
         <div style={{ marginBottom: '2rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '0.5rem' }}>

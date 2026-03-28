@@ -112,7 +112,7 @@ const HobbyItem = ({ icon: Icon, label, iconColor }) => {
 
 const About = () => {
   return (
-    <section id="about" style={{ padding: '4rem 0', minHeight: '100vh', display: 'flex', alignItems: 'center' }}>
+    <section id="about" style={{ minHeight: '100vh', display: 'flex', alignItems: 'flex-start' }}>
       <div className="container">
         <motion.div
           initial={{ opacity: 0 }}

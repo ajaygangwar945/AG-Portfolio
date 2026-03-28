@@ -67,7 +67,7 @@ const EducationItem = ({ school, degree, period, location, cgpa, logo, color = "
 
 const Education = () => {
   return (
-    <section id="education" style={{ padding: '4rem 0', minHeight: '100vh', display: 'flex', alignItems: 'center' }}>
+    <section id="education" style={{ minHeight: '100vh', display: 'flex', alignItems: 'flex-start' }}>
       <div className="container">
         <motion.div
           initial={{ opacity: 0 }}

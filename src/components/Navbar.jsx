@@ -3,10 +3,11 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Home, User, Layers, GraduationCap, Cpu, Compass, Box, Award, FileText, Mail, Menu, X, ShieldCheck } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Navbar = ({ theme, toggleTheme }) => {
   const location = useLocation();
+  const navigate = useNavigate();
   const isProjectsPage = location.pathname === '/projects';
   const [activeTab, setActiveTab] = useState(isProjectsPage ? 'projects' : 'home');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -44,6 +45,26 @@ const Navbar = ({ theme, toggleTheme }) => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, [navLinks, isProjectsPage]);
+
+  const scrollToSection = (id) => {
+    setIsMobileMenuOpen(false);
+    setActiveTab(id);
+    
+    if (isProjectsPage) {
+      navigate('/#' + id);
+      return;
+    }
+    
+    // Defer scroll to ensure menu closing doesn't interfere with position
+    setTimeout(() => {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // Update hash manually
+        window.history.pushState(null, null, `#${id}`);
+      }
+    }, 100);
+  };
 
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
 
@@ -110,12 +131,8 @@ const Navbar = ({ theme, toggleTheme }) => {
                 }}
                 href={isProjectsPage ? `/#${link.id}` : `#${link.id}`}
                 onClick={(e) => {
-                  if (isProjectsPage) {
-                    e.preventDefault();
-                    window.location.href = `/#${link.id}`;
-                  } else {
-                    setActiveTab(link.id);
-                  }
+                  e.preventDefault();
+                  scrollToSection(link.id);
                 }}
                 style={{
                   color: activeTab === link.id ? `var(--${link.id}-accent)` : 'var(--text-primary)',
@@ -127,7 +144,7 @@ const Navbar = ({ theme, toggleTheme }) => {
                   borderBottom: activeTab === link.id ? `2px solid var(--${link.id}-accent)` : '2px solid transparent',
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '0.3rem',
+                  gap: '0.6rem',
                   transition: '0.2s'
                 }}
               >
@@ -160,7 +177,8 @@ const Navbar = ({ theme, toggleTheme }) => {
               borderBottom: '1px solid var(--card-border)',
               overflow: 'hidden',
               display: 'flex',
-              flexDirection: 'column'
+              flexDirection: 'column',
+              paddingTop: '0.5rem'
             }}
           >
             {navLinks.map((link) => (
@@ -168,20 +186,15 @@ const Navbar = ({ theme, toggleTheme }) => {
                 key={link.name}
                 href={isProjectsPage ? `/#${link.id}` : `#${link.id}`}
                 onClick={(e) => {
-                  if (isProjectsPage) {
-                    e.preventDefault();
-                    window.location.href = `/#${link.id}`;
-                  } else {
-                    setActiveTab(link.id);
-                    setIsMobileMenuOpen(false);
-                  }
+                  e.preventDefault();
+                  scrollToSection(link.id);
                 }}
                 style={{
                   padding: '1rem 1.5rem',
                   color: activeTab === link.id ? `var(--${link.id}-accent)` : 'var(--text-primary)',
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '0.75rem',
+                  gap: '1.25rem',
                   fontSize: '0.8rem',
                   fontWeight: '700',
                   borderLeft: activeTab === link.id ? `4px solid var(--${link.id}-accent)` : '4px solid transparent',
@@ -196,12 +209,6 @@ const Navbar = ({ theme, toggleTheme }) => {
         )}
       </AnimatePresence>
 
-      <style jsx>{`
-        @media (max-width: 1024px) {
-          .desktop-menu { display: none !important; }
-          .mobile-toggle { display: block !important; }
-        }
-      `}</style>
     </motion.nav>
   );
 };

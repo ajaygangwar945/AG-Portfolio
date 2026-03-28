@@ -81,7 +81,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" style={{ padding: '4rem 0', minHeight: '100vh', display: 'flex', alignItems: 'center' }}>
+    <section id="contact" style={{ minHeight: '100vh', display: 'flex', alignItems: 'flex-start' }}>
       <div className="container">
         <motion.div
           initial={{ opacity: 0 }}

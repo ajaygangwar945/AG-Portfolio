@@ -1,11 +1,10 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   FileText, Download, Mail, Github, Linkedin, ExternalLink, 
-  GraduationCap, Award, Briefcase, 
-  Database, Layout, Server, Brain, Code2, Globe, 
-  Activity, Shield, Terminal, Zap, ChevronRight, Cpu, User
+  GraduationCap, Award, 
+  Globe, 
+  Activity, Terminal, Zap, ChevronRight, Cpu, User
 } from 'lucide-react';
 import CyberCard from './common/CyberCard';
 
@@ -78,10 +77,9 @@ const Resume = () => {
     setActiveNode(nodeId);
   };
 
-  return (
-    <section id="resume" className="resume-section-mobile" style={{ padding: '4rem 0', minHeight: '100vh', position: 'relative', overflow: 'hidden' }}>
 
-      
+  return (
+    <section id="resume" className="resume-section-mobile" style={{ minHeight: '100vh', position: 'relative', overflow: 'hidden' }}>
       <div className="container">
         {/* Terminal Header */}
         <div className="resume-header-flex" style={{ 
@@ -203,7 +201,7 @@ const Resume = () => {
                marginBottom: '2rem', 
                overflowX: 'auto', 
                paddingBottom: '0.5rem',
-               flexWrap: 'wrap', // Added wrap to prevent spill
+               flexWrap: 'wrap',
                justifyContent: 'flex-start'
              }}>
                 {nodes.map(node => (
@@ -224,7 +222,7 @@ const Resume = () => {
                       alignItems: 'center',
                       gap: '0.5rem',
                       whiteSpace: 'nowrap',
-                      clipPath: 'polygon(5% 0%, 100% 0%, 95% 100%, 0% 100%)' // Standardized slant
+                      clipPath: 'polygon(5% 0%, 100% 0%, 95% 100%, 0% 100%)'
                     }}
                   >
                     <node.icon size={14} />
@@ -334,20 +332,6 @@ const Resume = () => {
 
         </div>
 
-        {/* Custom Layout Style */}
-        <style dangerouslySetInnerHTML={{ __html: `
-          @media (max-width: 1100px) {
-            .resume-grid {
-              grid-template-columns: 1fr !important;
-            }
-          }
-          @media (max-width: 480px) {
-            .btn-node-selector {
-              padding: 0.5rem 0.8rem !important;
-              font-size: 0.6rem !important;
-            }
-          }
-        `}} />
       </div>
     </section>
   );

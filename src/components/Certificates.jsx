@@ -175,7 +175,7 @@ const Certificates = () => {
   ];
 
   return (
-    <section id="certificates" style={{ padding: '4rem 0', minHeight: '100vh', display: 'flex', alignItems: 'center' }}>
+    <section id="certificates" style={{ minHeight: '100vh', display: 'flex', alignItems: 'flex-start' }}>
       <div className="container">
         <motion.div
           initial={{ opacity: 0 }}
