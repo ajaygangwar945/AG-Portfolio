@@ -6,11 +6,16 @@
 
 <div align="center">
 
+[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Glossary/HTML5)
+[![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
 [![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
 [![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![Google Gemini](https://img.shields.io/badge/Google_Gemini-8E75C2?style=for-the-badge&logo=google-gemini&logoColor=white)](https://ai.google.dev/)
 [![Framer Motion](https://img.shields.io/badge/Framer_Motion-black?style=for-the-badge&logo=framer&logoColor=blue)](https://www.framer.com/motion/)
-[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen?style=for-the-badge&logo=google-chrome&logoColor=white)](https://www.ajaygangwar945.xyz)
+[![AWS Amplify](https://img.shields.io/badge/AWS_Amplify-FF9900?style=for-the-badge&logo=aws-amplify&logoColor=white)](https://aws.amazon.com/amplify/)
 [![Vercel Deployment](https://img.shields.io/badge/Vercel-Deployed-black?style=for-the-badge&logo=vercel&logoColor=white)](https://ajaygangwar-portfolio.vercel.app/)
+
 ---
 
 Welcome to the **AG-Portfolio**, a state-of-the-art web application that pushes the boundaries of traditional portfolio design. Built with **React 19** and **Vite**, this project features a unique high-tech interface, a fully functional **Terminal Mode**, and an **AI-powered Chatbot** driven by Google Gemini.
@@ -23,10 +28,12 @@ Welcome to the **AG-Portfolio**, a state-of-the-art web application that pushes 
 
 The project is fully deployed and accessible online. Experience the full interface directly in your browser:
 
-* **🌍 Main Domain (AWS Amplify)**: [![Live Website](https://img.shields.io/badge/Visit-www.ajaygangwar945.xyz-007ACC?style=for-the-badge&logo=google-chrome&logoColor=white)](https://www.ajaygangwar945.xyz)  
+* **🌍 Main Domain (AWS Amplify)**:
+[![Live Website](https://img.shields.io/badge/Visit-www.ajaygangwar945.xyz-007ACC?style=for-the-badge&logo=google-chrome&logoColor=white)](https://www.ajaygangwar945.xyz)  
     *Infrastructure: Secured with AWS Route53, CloudFront, and SSL.*
 
-* **🚀 Mirror Site (Vercel)**: [![Vercel Mirror](https://img.shields.io/badge/Mirror-ajaygangwar--portfolio.vercel.app-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://ajaygangwar-portfolio.vercel.app/)  
+* **🚀 Mirror Site (Vercel)**:
+[![Vercel Mirror](https://img.shields.io/badge/Mirror-ajaygangwar--portfolio.vercel.app-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://ajaygangwar-portfolio.vercel.app/)  
     *Infrastructure: Globally distributed Vercel Edge Network.*
 
 ---
