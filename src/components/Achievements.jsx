@@ -116,15 +116,19 @@ const Achievements = () => {
     <section id="achievements" style={{ padding: '64px 0', minHeight: '100vh', display: 'flex', alignItems: 'center' }}>
       <div className="container">
         <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '3rem' }}
+          style={{ marginBottom: '2rem' }}
         >
-          <Trophy size={32} color="var(--achievements-accent)" style={{ flexShrink: 0 }} />
-          <h2 style={{ fontSize: 'clamp(1.8rem, 5vw, 2.5rem)', fontFamily: 'var(--font-heading)', color: 'var(--text-secondary)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '0.5rem' }}>
+            <Trophy size={24} color="var(--achievements-accent)" />
+            <span style={{ fontSize: '0.8rem', color: 'var(--achievements-accent)', fontWeight: '800', letterSpacing: '3px', textTransform: 'uppercase' }}>MILESTONES</span>
+          </div>
+          <h2 style={{ fontSize: '3rem', marginBottom: '1rem', color: 'var(--text-secondary)', fontFamily: 'var(--font-heading)' }}>
             Major <span style={{ color: 'var(--achievements-accent)' }}>Achievements</span>
           </h2>
+          <div style={{ width: '100%', height: '1px', background: 'var(--card-border)' }} />
         </motion.div>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>

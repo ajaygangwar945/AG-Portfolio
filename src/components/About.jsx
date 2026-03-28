@@ -25,15 +25,18 @@ const Card = ({ title, icon: Icon, iconColor, children, className = "", style = 
     >
       <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.5rem' }}>
         <div style={{
-          padding: '0.5rem',
-          borderRadius: '12px',
-          backgroundColor: 'var(--about-accent-alpha)',
-          border: '1px solid var(--card-border)',
+          padding: '0.6rem',
+          borderRadius: '0',
+          backgroundColor: `color-mix(in srgb, ${iconColor} 15%, transparent)`,
+          border: `1px solid color-mix(in srgb, ${iconColor} 50%, transparent)`,
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'center'
+          justifyContent: 'center',
+          width: '44px',
+          height: '44px',
+          flexShrink: 0
         }}>
-          {Icon && <Icon size={20} color={iconColor} />}
+          {Icon && <Icon size={22} color={iconColor} />}
         </div>
         <h3 style={{
           fontSize: '1.25rem',
@@ -54,12 +57,15 @@ const FactItem = ({ icon: Icon, title, value, iconColor }) => {
     <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem' }}>
       <div style={{
         padding: '0.6rem',
-        borderRadius: '50%',
-        backgroundColor: 'var(--about-accent-alpha)',
-        border: '1px solid var(--card-border)',
+        borderRadius: '0',
+        backgroundColor: `color-mix(in srgb, ${iconColor} 15%, transparent)`,
+        border: `1px solid color-mix(in srgb, ${iconColor} 50%, transparent)`,
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        width: '40px',
+        height: '40px',
+        flexShrink: 0
       }}>
         <Icon size={18} color={iconColor} />
       </div>
@@ -78,14 +84,27 @@ const HobbyItem = ({ icon: Icon, label, iconColor }) => {
         display: 'flex',
         alignItems: 'center',
         gap: '1rem',
-        padding: '1rem',
-        borderRadius: '12px',
-        backgroundColor: 'var(--about-accent-alpha)',
-        border: '1px solid var(--card-border)',
-        marginBottom: '1rem',
+        padding: '0.75rem 1rem',
+        borderRadius: '0',
+        backgroundColor: `color-mix(in srgb, ${iconColor} 10%, transparent)`,
+        border: `1px solid color-mix(in srgb, ${iconColor} 30%, transparent)`,
+        marginBottom: '0.85rem',
+        transition: 'all 0.3s ease'
       }}
     >
-      <Icon size={18} color={iconColor} />
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '36px',
+        height: '36px',
+        borderRadius: '0',
+        backgroundColor: `color-mix(in srgb, ${iconColor} 20%, transparent)`,
+        border: `1px solid color-mix(in srgb, ${iconColor} 40%, transparent)`,
+        flexShrink: 0
+      }}>
+        <Icon size={18} color={iconColor} />
+      </div>
       <span style={{ fontWeight: '500', color: 'var(--text-primary)', fontSize: '0.95rem' }}>{label}</span>
     </div>
   );

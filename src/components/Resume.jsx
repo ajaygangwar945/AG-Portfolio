@@ -89,12 +89,20 @@ const Resume = () => {
           borderBottom: '1px solid var(--card-border)', 
           paddingBottom: '1rem',
         }}>
-          <div>
-            <h2 style={{ fontSize: 'clamp(1.5rem, 5vw, 2.5rem)', fontFamily: 'var(--font-heading)', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: '1rem' }}>
-              <FileText size={32} color="var(--resume-accent)" /> 
-              Resume
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            style={{ marginBottom: '1rem' }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '0.5rem' }}>
+              <FileText size={24} color="var(--resume-accent)" />
+              <span style={{ fontSize: '0.8rem', color: 'var(--resume-accent)', fontWeight: '800', letterSpacing: '3px', textTransform: 'uppercase' }}>CURRICULUM VITAE</span>
+            </div>
+            <h2 style={{ fontSize: '3rem', margin: '0', color: 'var(--text-secondary)', fontFamily: 'var(--font-heading)' }}>
+              My <span style={{ color: 'var(--resume-accent)' }}>Resume</span>
             </h2>
-          </div>
+          </motion.div>
           <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center', flexWrap: 'wrap', width: '100%', maxWidth: 'fit-content' }}>
             <motion.a 
                href={resumeUrl}

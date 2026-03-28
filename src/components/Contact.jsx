@@ -29,9 +29,11 @@ const ContactItem = ({ icon: Icon, label, value, link, color }) => (
       display: 'flex', 
       alignItems: 'center', 
       justifyContent: 'center',
-      border: `1px solid color-mix(in srgb, ${color}, transparent 73%)`
+      border: `1px solid color-mix(in srgb, ${color}, transparent 73%)`,
+      borderRadius: '0',
+      flexShrink: 0
     }}>
-      <Icon size={24} color={color} />
+      {Icon && <Icon size={24} color={color} />}
     </div>
     <div>
       <p style={{ fontSize: '0.7rem', color: 'var(--text-dim)', fontWeight: '700', textTransform: 'uppercase' }}>{label}</p>
@@ -81,17 +83,21 @@ const Contact = () => {
   return (
     <section id="contact" style={{ padding: '4rem 0', minHeight: '100vh', display: 'flex', alignItems: 'center' }}>
       <div className="container">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          style={{ textAlign: 'center', marginBottom: '2rem' }}
+          style={{ marginBottom: '2rem' }}
         >
-          <h2 style={{ fontSize: '3rem', fontFamily: 'var(--font-heading)', color: 'var(--text-secondary)', marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem' }}>
-            <Mail size={40} color="var(--contact-accent)" />
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '0.5rem' }}>
+            <Mail size={24} color="var(--contact-accent)" />
+            <span style={{ fontSize: '0.8rem', color: 'var(--contact-accent)', fontWeight: '800', letterSpacing: '3px', textTransform: 'uppercase' }}>CONNECT</span>
+          </div>
+          <h2 style={{ fontSize: '3rem', marginBottom: '1rem', color: 'var(--text-secondary)', fontFamily: 'var(--font-heading)' }}>
             Get in <span style={{ color: 'var(--contact-accent)' }}>Touch</span>
           </h2>
-          <p style={{ color: 'var(--text-dim)', maxWidth: '600px', margin: '0 auto' }}>
+          <div style={{ width: '100%', height: '1px', background: 'var(--card-border)', marginBottom: '1.5rem' }} />
+          <p style={{ color: 'var(--text-dim)', maxWidth: '600px' }}>
             Available for freelance, full-time positions, and AI consultations. Reach out via any of the channels below.
           </p>
         </motion.div>

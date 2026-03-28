@@ -69,16 +69,20 @@ const Education = () => {
   return (
     <section id="education" style={{ padding: '4rem 0', minHeight: '100vh', display: 'flex', alignItems: 'center' }}>
       <div className="container">
-        <motion.div 
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}
+          style={{ marginBottom: '2rem' }}
         >
-          <GraduationCap size={32} color="var(--education-accent)" style={{ flexShrink: 0 }} />
-          <h2 style={{ fontSize: 'clamp(1.8rem, 5vw, 2.5rem)', fontFamily: 'var(--font-heading)', color: 'var(--text-secondary)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '0.5rem' }}>
+            <GraduationCap size={24} color="var(--education-accent)" />
+            <span style={{ fontSize: '0.8rem', color: 'var(--education-accent)', fontWeight: '800', letterSpacing: '3px', textTransform: 'uppercase' }}>ACADEMICS</span>
+          </div>
+          <h2 style={{ fontSize: '3rem', marginBottom: '1rem', color: 'var(--text-secondary)', fontFamily: 'var(--font-heading)' }}>
             Academic <span style={{ color: 'var(--education-accent)' }}>Journey</span>
           </h2>
+          <div style={{ width: '100%', height: '1px', background: 'var(--card-border)' }} />
         </motion.div>
         
         <div className="education-grid">
