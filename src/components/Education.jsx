@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { GraduationCap, Calendar, MapPin, Award } from 'lucide-react';
 import CyberCard from './common/CyberCard';
+import vidyaLogo from '../assets/vidya.jpg';
 
 const EducationItem = ({ school, degree, period, location, cgpa, logo, color = "var(--education-accent)" }) => (
   <CyberCard 
@@ -101,7 +102,7 @@ const Education = () => {
             period="APR 2021 - APR 2022" 
             location="BAREILLY, UP" 
             cgpa="72%" 
-            logo="/vidya.jpg" 
+            logo={vidyaLogo} 
             color="var(--education-accent)" 
           />
           <EducationItem 
@@ -110,7 +111,7 @@ const Education = () => {
             period="APR 2019 - APR 2020" 
             location="BAREILLY, UP" 
             cgpa="94%" 
-            logo="/vidya.jpg" 
+            logo={vidyaLogo} 
             color="var(--education-accent)" 
           />
         </div>
