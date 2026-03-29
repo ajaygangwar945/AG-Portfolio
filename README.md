@@ -16,11 +16,13 @@
 [![AWS Amplify](https://img.shields.io/badge/AWS_Amplify-FF9900?style=for-the-badge&logo=aws-amplify&logoColor=white)](https://aws.amazon.com/amplify/)
 [![Vercel Deployment](https://img.shields.io/badge/Vercel-Deployed-black?style=for-the-badge&logo=vercel&logoColor=white)](https://ajaygangwar-portfolio.vercel.app/)
 
+</div>
+
 ---
 
-Welcome to the **AG-Portfolio**, a state-of-the-art web application that pushes the boundaries of traditional portfolio design. Built with **React 19** and **Vite**, this project features a unique high-tech interface, a fully functional **Terminal Mode**, and an **AI-powered Chatbot** driven by Google Gemini.
+## 🚀 Project Overview
 
-</div>
+Welcome to the **AG-Portfolio**, a state-of-the-art web application that pushes the boundaries of traditional portfolio design. Built with **React 19** and **Vite**, this project features a unique high-tech interface, a fully functional **Terminal Mode**, and an **AI-powered Chatbot** driven by Google Gemini.
 
 ---
 
