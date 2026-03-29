@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Mail, Phone, Linkedin, Github, Send, ExternalLink, Heart, Twitter } from 'lucide-react';
 import CyberCard from './common/CyberCard';
 
@@ -10,21 +10,21 @@ const ContactItem = ({ icon: Icon, label, value, link, color }) => (
     viewport={{ once: true }}
     onClick={() => window.open(link, '_blank')}
     accentColor={color}
-      style={{ 
-        padding: '1.5rem', 
-        background: 'var(--card-bg)',
-        backdropFilter: 'blur(10px)',
-        display: 'flex',
-        alignItems: 'center',
-        gap: '1.5rem',
-        cursor: 'pointer',
-        '--card-border': `color-mix(in srgb, ${color}, transparent 80%)`,
-        '--primary-accent': color
-      }}
+    style={{ 
+      padding: 'clamp(1rem, 4vw, 1.5rem)', 
+      background: 'var(--card-bg)',
+      backdropFilter: 'blur(10px)',
+      display: 'flex',
+      alignItems: 'center',
+      gap: 'clamp(1rem, 4vw, 1.5rem)',
+      cursor: 'pointer',
+      '--card-border': `color-mix(in srgb, ${color}, transparent 80%)`,
+      '--primary-accent': color
+    }}
   >
     <div style={{ 
-      width: '50px', 
-      height: '50px', 
+      width: 'clamp(40px, 12vw, 50px)', 
+      height: 'clamp(40px, 12vw, 50px)', 
       background: `color-mix(in srgb, ${color}, transparent 93%)`, 
       display: 'flex', 
       alignItems: 'center', 
@@ -33,13 +33,20 @@ const ContactItem = ({ icon: Icon, label, value, link, color }) => (
       borderRadius: '0',
       flexShrink: 0
     }}>
-      {Icon && <Icon size={24} color={color} />}
+      {Icon && <Icon size={20} color={color} />}
     </div>
-    <div>
-      <p style={{ fontSize: '0.7rem', color: 'var(--text-dim)', fontWeight: '700', textTransform: 'uppercase' }}>{label}</p>
-      <p style={{ fontSize: '1rem', color: 'var(--text-secondary)', fontWeight: '600' }}>{value}</p>
+    <div style={{ flex: 1, minWidth: 0 }}>
+      <p style={{ fontSize: '0.65rem', color: 'var(--text-dim)', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '0.2rem' }}>{label}</p>
+      <p style={{ 
+        fontSize: 'clamp(0.85rem, 3.5vw, 1.1rem)', 
+        color: 'var(--text-secondary)', 
+        fontWeight: '600',
+        wordBreak: 'break-all',
+        overflowWrap: 'anywhere',
+        lineHeight: '1.4'
+      }}>{value}</p>
     </div>
-    <ExternalLink size={14} style={{ marginLeft: 'auto', opacity: 0.3 }} />
+    <ExternalLink size={14} style={{ marginLeft: 'auto', opacity: 0.3, flexShrink: 0 }} />
   </CyberCard>
 );
 
@@ -93,7 +100,13 @@ const Contact = () => {
             <Mail size={24} color="var(--contact-accent)" />
             <span style={{ fontSize: '0.8rem', color: 'var(--contact-accent)', fontWeight: '800', letterSpacing: '3px', textTransform: 'uppercase' }}>CONNECT</span>
           </div>
-          <h2 style={{ fontSize: '3rem', marginBottom: '1rem', color: 'var(--text-secondary)', fontFamily: 'var(--font-heading)' }}>
+          <h2 style={{ 
+            fontSize: 'clamp(1.85rem, 8vw, 3rem)', 
+            marginBottom: '1rem', 
+            color: 'var(--text-secondary)', 
+            fontFamily: 'var(--font-heading)',
+            lineHeight: '1.2'
+          }}>
             Get in <span style={{ color: 'var(--contact-accent)' }}>Touch</span>
           </h2>
           <div style={{ width: '100%', height: '1px', background: 'var(--card-border)', marginBottom: '1.5rem' }} />
@@ -102,7 +115,7 @@ const Contact = () => {
           </p>
         </motion.div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '4rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))', gap: 'clamp(2rem, 5vw, 4rem)' }}>
           {/* Contact Details */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             <ContactItem 
