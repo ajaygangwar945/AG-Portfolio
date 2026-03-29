@@ -116,7 +116,6 @@ AG-Portfolio /
 |
 |- public /             # Static assets
 |  |- favicon.svg       # Website favicon
-|  |- icons.svg         # Icon sprite
 |  |- profile_plain.png # Main profile image
 |  |- resume.pdf        # Professional resume
 |  L- images /          # UI generated assets
@@ -143,9 +142,20 @@ L- src /                # Application source code
 ## 🎯 Optimization & User Experience
 
 * **Fully Responsive**: Seamlessly scales from 4K monitors to mobile devices.
+* **Minimalist Asset Management**: Zero unused images or dead code for faster delivery.
 * **Dynamic Themes**: Interactive Dark/Light mode engine.
 * **Micro-Animations**: Subtle UI feedback for an immersive experience.
 * **SEO Optimized**: Semantic HTML and performance metrics optimized for search engines.
+
+---
+
+## 🛡️ Security & Best Practices
+
+The project maintains a high standard of security and code quality:
+* **Zero Vulnerabilities**: Regular `npm audit` checks ensure a clean dependency tree.
+* **Secure Environment Handling**: All internal keys are managed via `.env` (excluded from version control).
+* **Automated Linting**: ESLint integrated for consistent, bug-free code.
+* **Best-Practice Deployment**: Infrastructure secured with SSL, AWS Route53, and a globally distributed Edge Network.
 
 ---
 

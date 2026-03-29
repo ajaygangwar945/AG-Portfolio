@@ -97,11 +97,7 @@ const AllProjects = () => {
               ))}
             </div>
 
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
-              gap: '2rem'
-            }}>
+            <div className="projects-grid">
               <AnimatePresence mode='popLayout'>
                 {filteredProjects.map((project) => (
                   <ProjectCard key={project.uid} {...project} />
