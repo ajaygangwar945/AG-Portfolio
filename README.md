@@ -30,12 +30,10 @@ Welcome to the **AG-Portfolio**, a state-of-the-art web application that pushes 
 
 The project is fully deployed and accessible online. Experience the full interface directly in your browser:
 
-* **🌍 Main Domain (AWS Amplify)**:
-[![Live Website](https://img.shields.io/badge/Visit-www.ajaygangwar945.xyz-007ACC?style=for-the-badge&logo=google-chrome&logoColor=white)](https://www.ajaygangwar945.xyz)  
+* **🌍 Main Domain (AWS Amplify)**: [www.ajaygangwar945.xyz](https://www.ajaygangwar945.xyz)  
     *Infrastructure: Secured with AWS Route53, CloudFront, and SSL.*
 
-* **🚀 Mirror Site (Vercel)**:
-[![Vercel Mirror](https://img.shields.io/badge/Mirror-ajaygangwar--portfolio.vercel.app-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://ajaygangwar-portfolio.vercel.app/)  
+* **🚀 Mirror Site (Vercel)**: [ajaygangwar-portfolio.vercel.app](https://ajaygangwar-portfolio.vercel.app/)  
     *Infrastructure: Globally distributed Vercel Edge Network.*
 
 ---
