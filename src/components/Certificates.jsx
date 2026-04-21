@@ -110,7 +110,7 @@ const CertificateItem = ({ name, issuer, date, image, link, description, Icon })
           width: 'fit-content'
         }}
       >
-        VIEW CREDENTIAL <ExternalLink size={14} />
+        VIEW CERTIFICATE <ExternalLink size={14} />
       </motion.a>
     </div>
   </CyberCard>
@@ -185,10 +185,10 @@ const Certificates = () => {
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '0.5rem' }}>
             <ShieldCheck size={24} color="var(--certificates-accent)" />
-            <span style={{ fontSize: '0.8rem', color: 'var(--certificates-accent)', fontWeight: '800', letterSpacing: '3px', textTransform: 'uppercase' }}>CREDENTIALS</span>
+            <span style={{ fontSize: '0.8rem', color: 'var(--certificates-accent)', fontWeight: '800', letterSpacing: '3px', textTransform: 'uppercase' }}>CERTIFICATES</span>
           </div>
           <h2 style={{ fontSize: '3rem', marginBottom: '1rem', color: 'var(--text-secondary)', fontFamily: 'var(--font-heading)' }}>
-            Verified <span style={{ color: 'var(--certificates-accent)' }}>Certifications</span>
+            Verified <span style={{ color: 'var(--certificates-accent)' }}>Certificates</span>
           </h2>
           <div style={{ width: '100%', height: '1px', background: 'var(--card-border)' }} />
         </motion.div>
