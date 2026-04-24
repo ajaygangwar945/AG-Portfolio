@@ -39,6 +39,8 @@
   --contact-accent: #ef4444;
   /* Red */
   --contact-accent-rgb: 239, 68, 68;
+  --positions-accent: #f472b6;
+  --positions-accent-alpha: rgba(244, 114, 182, 0.25);
   --github-accent: #ffffff;
   --github-accent-rgb: 255, 255, 255;
   --express-accent: #ffffff;
@@ -168,7 +170,8 @@ body.light-mode {
   --certificates-accent-alpha: rgba(8, 145, 178, 0.2);
   --resume-accent-alpha: rgba(162, 28, 175, 0.2);
   --contact-accent-alpha: rgba(220, 38, 38, 0.2);
-
+  --positions-accent: #db2777;
+  --positions-accent-alpha: rgba(219, 39, 119, 0.2);
   --primary-gradient: linear-gradient(135deg, #00838f 0%, #006064 100%);
   --cyber-grid:
     linear-gradient(rgba(0, 131, 143, 0.04) 1px, transparent 1px),

@@ -1,4 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { allProjects } from '../data/projectsData';
+import { positionsData } from '../data/positionsData';
+import { allSkills } from '../data/skillsData';
+import { educationData } from '../data/educationData';
+import { achievementsData } from '../data/achievementsData';
+import { certificationsData } from '../data/certificatesData';
 
 // Prompt prefix — declared at module scope to avoid re-creating on each render
 const Prompt = ({ compact = false }) => {
@@ -120,36 +126,83 @@ const TerminalPortfolio = ({ onClose }) => {
     help: () => [
       { content: 'Available Commands:', cls: 'heading' },
       { content: '  about     →  Identity and profile details', cls: 'output' },
+      { content: '  skills    →  Technical skill matrix', cls: 'output' },
       { content: '  projects  →  Technical project logs', cls: 'output' },
+      { content: '  exp       →  Professional experience & roles', cls: 'output' },
       { content: '  edu       →  Academic records', cls: 'output' },
+      { content: '  milestones→  Major achievements & awards', cls: 'output' },
+      { content: '  certs     →  Verified certifications', cls: 'output' },
       { content: '  contact   →  Communication protocols', cls: 'output' },
+      { content: '  all       →  Display full profile summary', cls: 'output' },
       { content: '  clear     →  Clear terminal', cls: 'output' },
       { content: '  exit      →  Close terminal', cls: 'output' },
     ],
     about: () => [
       { content: 'Profile:', cls: 'heading' },
       { content: '  Name   :  Ajay Gangwar', cls: 'output' },
-      { content: '  Status :  Aspiring Data Scientist', cls: 'output' },
-      { content: '  Spec   :  AI Frameworks & Big Data Architecture', cls: 'output' },
+      { content: '  Status :  Aspiring Data Scientist & AI/ML Engineer', cls: 'output' },
+      { content: '  Spec   :  AI Frameworks, Big Data Architecture & Full-Stack Development', cls: 'output' },
       { content: '  Node   :  India', cls: 'output' },
-      { content: '  Goal   :  Decrypting complex data into neural insights.', cls: 'output' },
+      { content: '  Goal   :  Decrypting complex data into neural insights and building impactful AI solutions.', cls: 'output' },
     ],
-    projects: () => [
-      { content: 'Project Logs:', cls: 'heading' },
-      { content: '• ATS Resume Score      —  AI engine for resume optimization.', cls: 'bullet' },
-      { content: '• MedPath Pro           —  Dijkstra-based healthcare router.', cls: 'bullet' },
-      { content: '• Ayush FHIR            —  Healthcare interoperability platform.', cls: 'bullet' },
-      { content: '• Cyber Warfare IDS     —  ML network intrusion detection.', cls: 'bullet' },
-      { content: '• AI Legal Advisor      —  Gemini AI legal assistant.', cls: 'bullet' },
-      { content: '• SoftHub               —  High-performance distribution platform.', cls: 'bullet' },
-      { content: '• Global Terrorism      —  Interactive Power BI dashboard.', cls: 'bullet' },
-    ],
-    edu: () => [
-      { content: 'Academic History:', cls: 'heading' },
-      { content: '• B.Tech (CS)          —  Lovely Professional University (7.46 CGPA)', cls: 'bullet' },
-      { content: '• Higher Secondary     —  Vidya Bhavan Public School (72%)', cls: 'bullet' },
-      { content: '• Secondary School     —  Vidya Bhavan Public School (94%)', cls: 'bullet' },
-    ],
+    skills: () => {
+      const output = [{ content: 'Technical Skill Matrix:', cls: 'heading' }];
+      const categoriesSet = [...new Set(allSkills.map(s => s.category))];
+      categoriesSet.forEach(cat => {
+        const catSkills = allSkills.filter(s => s.category === cat).map(s => s.name).join(', ');
+        output.push({ content: `  [${cat}]`, cls: 'info' });
+        output.push({ content: `    ${catSkills}`, cls: 'output' });
+      });
+      return output;
+    },
+    projects: () => {
+      const output = [{ content: 'Project Logs:', cls: 'heading' }];
+      allProjects.forEach(p => {
+        output.push({ content: `• ${p.title.padEnd(25)} — ${p.description}`, cls: 'bullet' });
+        output.push({ content: `  Stack: ${p.tech.join(', ')}`, cls: 'dim' });
+      });
+      return output;
+    },
+    exp: () => {
+      const output = [{ content: 'Professional Experience:', cls: 'heading' }];
+      positionsData.forEach(pos => {
+        output.push({ content: `• ${pos.title} (${pos.role})`, cls: 'bullet' });
+        output.push({ content: `  ${pos.date}`, cls: 'dim' });
+        if (pos.responsibilities) {
+          pos.responsibilities.forEach(desc => {
+            output.push({ content: `    - ${desc}`, cls: 'output' });
+          });
+        }
+      });
+      return output;
+    },
+    experience: () => commands.exp(),
+    edu: () => {
+      const output = [{ content: 'Academic History:', cls: 'heading' }];
+      educationData.forEach(e => {
+        output.push({ content: `• ${e.school.padEnd(30)} — ${e.degree}`, cls: 'bullet' });
+        output.push({ content: `  ${e.period} | Grade: ${e.cgpa}`, cls: 'dim' });
+      });
+      return output;
+    },
+    education: () => commands.edu(),
+    milestones: () => {
+      const output = [{ content: 'Major Achievements:', cls: 'heading' }];
+      achievementsData.forEach(a => {
+        output.push({ content: `• ${a.title} (${a.date})`, cls: 'bullet' });
+        output.push({ content: `  ${a.award}`, cls: 'output' });
+      });
+      return output;
+    },
+    achievements: () => commands.milestones(),
+    certs: () => {
+      const output = [{ content: 'Verified Certifications:', cls: 'heading' }];
+      certificationsData.forEach(c => {
+        output.push({ content: `• ${c.name.padEnd(35)} — ${c.issuer} (${c.date})`, cls: 'bullet' });
+      });
+      return output;
+    },
+    certificates: () => commands.certs(),
     contact: () => [
       { content: 'Contact Protocols:', cls: 'heading' },
       { content: '  Email     :  ajaygangwar945@gmail.com', cls: 'output' },
@@ -157,6 +210,18 @@ const TerminalPortfolio = ({ onClose }) => {
       { content: '  GitHub    :  github.com/ajaygangwar945', cls: 'output' },
       { content: '  Phone     :  +91-8283024392', cls: 'output' },
     ],
+    all: () => {
+      let output = [];
+      output = [...output, ...commands.about(), { content: ' ', cls: 'output' }];
+      output = [...output, ...commands.skills(), { content: ' ', cls: 'output' }];
+      output = [...output, ...commands.exp(), { content: ' ', cls: 'output' }];
+      output = [...output, ...commands.projects(), { content: ' ', cls: 'output' }];
+      output = [...output, ...commands.edu(), { content: ' ', cls: 'output' }];
+      output = [...output, ...commands.milestones(), { content: ' ', cls: 'output' }];
+      output = [...output, ...commands.certs(), { content: ' ', cls: 'output' }];
+      output = [...output, ...commands.contact()];
+      return output;
+    },
     clear: () => { setHistory([]); return null; },
     exit:  () => { onClose(); return null; },
   };

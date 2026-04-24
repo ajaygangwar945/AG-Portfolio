@@ -15,6 +15,8 @@ import TerminalPortfolio from './components/TerminalPortfolio';
 import TerminalToggle from './components/TerminalToggle';
 import AllProjects from './components/AllProjects';
 import Chatbot from './components/Chatbot';
+import Positions from './components/Positions';
+import PositionDetails from './components/PositionDetails';
 
 const HomePage = ({ theme, toggleTheme, terminalOpen, setTerminalOpen }) => {
   useEffect(() => {
@@ -39,6 +41,7 @@ const HomePage = ({ theme, toggleTheme, terminalOpen, setTerminalOpen }) => {
         <Projects />
         <Certificates />
         <Achievements />
+        <Positions />
         <Education />
         <Resume />
         <Contact />
@@ -78,7 +81,8 @@ function App() {
               setTerminalOpen={setTerminalOpen} 
             />
           } />
-          <Route path="/projects" element={<AllProjects />} />
+          <Route path="/projects" element={<AllProjects theme={theme} toggleTheme={toggleTheme} />} />
+          <Route path="/position/:id" element={<PositionDetails theme={theme} toggleTheme={toggleTheme} />} />
         </Routes>
       </div>
     </Router>

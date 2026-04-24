@@ -1,14 +1,16 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Home, User, Layers, GraduationCap, Cpu, Compass, Box, Award, FileText, Mail, Menu, X, ShieldCheck } from 'lucide-react';
+import { Home, User, Layers, GraduationCap, Cpu, Compass, Box, Award, FileText, Mail, Menu, X, ShieldCheck, Users } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const Navbar = ({ theme, toggleTheme }) => {
   const location = useLocation();
   const navigate = useNavigate();
+  const isHome = location.pathname === '/';
   const isProjectsPage = location.pathname === '/projects';
+  const isDetailPage = !isHome;
   const [activeTab, setActiveTab] = useState(isProjectsPage ? 'projects' : 'home');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -19,6 +21,7 @@ const Navbar = ({ theme, toggleTheme }) => {
     { name: 'Projects', icon: Layers, id: 'projects' },
     { name: 'Certificates', icon: ShieldCheck, id: 'certificates' },
     { name: 'Achievements', icon: Award, id: 'achievements' },
+    { name: 'Positions', icon: Users, id: 'positions' },
     { name: 'Education', icon: GraduationCap, id: 'education' },
     { name: 'Resume', icon: FileText, id: 'resume' },
     { name: 'Contact', icon: Mail, id: 'contact' },
@@ -50,7 +53,7 @@ const Navbar = ({ theme, toggleTheme }) => {
     setIsMobileMenuOpen(false);
     setActiveTab(id);
     
-    if (isProjectsPage) {
+    if (isDetailPage) {
       navigate('/#' + id);
       return;
     }
@@ -101,7 +104,7 @@ const Navbar = ({ theme, toggleTheme }) => {
             minWidth: 0,
             flexShrink: 1
           }}
-          onClick={() => isProjectsPage ? window.location.href = '/' : window.scrollTo({ top: 0, behavior: 'smooth' })}
+          onClick={() => isDetailPage ? navigate('/') : window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
           <div style={{
             width: 'clamp(20px, 5vw, 28px)',
@@ -129,7 +132,7 @@ const Navbar = ({ theme, toggleTheme }) => {
                   backgroundColor: `var(--${link.id}-accent-alpha, rgba(102, 252, 241, 0.1))`,
                   color: `var(--${link.id}-accent)`
                 }}
-                href={isProjectsPage ? `/#${link.id}` : `#${link.id}`}
+                href={isDetailPage ? `/#${link.id}` : `#${link.id}`}
                 onClick={(e) => {
                   e.preventDefault();
                   scrollToSection(link.id);
@@ -184,7 +187,7 @@ const Navbar = ({ theme, toggleTheme }) => {
             {navLinks.map((link) => (
               <a
                 key={link.name}
-                href={isProjectsPage ? `/#${link.id}` : `#${link.id}`}
+                href={isDetailPage ? `/#${link.id}` : `#${link.id}`}
                 onClick={(e) => {
                   e.preventDefault();
                   scrollToSection(link.id);

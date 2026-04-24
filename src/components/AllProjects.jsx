@@ -6,25 +6,14 @@ import { allProjects } from '../data/projectsData';
 import BackgroundElements from './BackgroundElements';
 import Navbar from './Navbar';
 
-const AllProjects = () => {
+const AllProjects = ({ theme, toggleTheme }) => {
   const [activeTab, setActiveTab] = useState('All');
-  const [theme, setTheme] = useState(document.body.classList.contains('light-mode') ? 'light' : 'dark');
   
   const categories = ['All', 'Full Stack', 'Frontend', 'Data Visualization', 'AI & Data', 'Cybersecurity'];
 
   const filteredProjects = activeTab === 'All'
     ? allProjects
     : allProjects.filter(project => project.category.includes(activeTab));
-
-  const toggleTheme = () => {
-    const newTheme = theme === 'dark' ? 'light' : 'dark';
-    setTheme(newTheme);
-    if (newTheme === 'light') {
-      document.body.classList.add('light-mode');
-    } else {
-      document.body.classList.remove('light-mode');
-    }
-  };
 
   // Ensure we start at the top of the page
   useEffect(() => {

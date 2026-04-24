@@ -22,6 +22,8 @@ import projectCv from '../assets/project-cv.png';
 import projectCertificates from '../assets/project-certificates.png';
 import projectPortfolioAi from '../assets/project-portfolio-ai.png';
 import projectHtmlHub from '../assets/project-html-hub.png';
+import projectGithubProfile from '../assets/project-github-profile.png';
+
 
 export const allProjects = [
   {
@@ -157,6 +159,18 @@ export const allProjects = [
     uid: "ACH-09"
   },
   {
+    title: "My Portfolio",
+    description: "Personal portfolio website built with React, Vite, and Tailwind CSS, featuring an AI chatbot and project generator powered by Google Gemini API.",
+    tech: ["React", "Vite", "Tailwind CSS", "Gemini API"],
+    github: "https://github.com/ajaygangwar945/My-Portfolio",
+    live: "https://ajay-gangwar-portfolio.netlify.app/",
+    icon: Cpu,
+    color: "#f43f5e",
+    image: projectPortfolioAi,
+    category: "Frontend, AI & Data",
+    uid: "PORT-GEM-25"
+  },
+  {
     title: "Cyber Warfare Intrusion Detection",
     description: "Machine learning intrusion detection system for identifying and classifying malicious network traffic.",
     tech: ["Python", "Scikit-Learn", "Machine Learning"],
@@ -167,18 +181,6 @@ export const allProjects = [
     image: projectCyber,
     category: "AI & Data, Cybersecurity",
     uid: "CWID-14"
-  },
-  {
-    title: "Portfolio",
-    description: "Personal portfolio website built with React, Vite, and Tailwind CSS, featuring an AI chatbot and project generator powered by Google Gemini API.",
-    tech: ["React", "Vite", "Tailwind CSS", "Gemini API"],
-    github: "https://github.com/ajaygangwar945/My-Portfolio",
-    live: "https://ajay-gangwar-portfolio.netlify.app/",
-    icon: Cpu,
-    color: "#f43f5e",
-    image: projectPortfolioAi,
-    category: "Frontend, AI & Data",
-    uid: "PORT-GEM-25"
   },
   {
     title: "Indian Rainfall Data Analysis",
@@ -241,6 +243,18 @@ export const allProjects = [
     uid: "ATS-CORE-02"
   },
   {
+    title: "GitHub Profile Overview",
+    description: "Professional developer profile showcase featuring dynamic statistics, automated activity tracking, and interactive GitHub stats.",
+    tech: ["Markdown", "GitHub Actions", "WakaTime", "Profile Stats"],
+    github: "https://github.com/ajaygangwar945/ajaygangwar945",
+    live: "https://github.com/ajaygangwar945",
+    icon: Globe,
+    color: "#8b5cf6",
+    image: projectGithubProfile,
+    category: "Frontend",
+    uid: "GH-PROF-26"
+  },
+  {
     title: "SoftHub",
     description: "SoftHub is a high-performance, full-stack software distribution platform with a robust Node.js backend.",
     tech: ["Node.js", "Express", "MongoDB", "HTML"],
@@ -277,7 +291,7 @@ export const allProjects = [
     uid: "HUB-PET-03"
   },
   {
-    title: "First HTML Learning Hub",
+    title: "First HTML Project Overview",
     description: "Comprehensive HTML & CSS showcase featuring an interactive Three.js powered 3D dashboard with 30+ unique modular web components.",
     tech: ["HTML5", "CSS3", "JavaScript", "Three.js"],
     github: "https://github.com/ajaygangwar945/First-HTML-Project-Overview",
