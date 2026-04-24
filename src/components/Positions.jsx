@@ -160,13 +160,13 @@ const PositionCard = ({ position, color }) => {
 
 const Positions = () => {
   return (
-    <section id="positions" style={{ minHeight: '100vh', display: 'flex', alignItems: 'flex-start', padding: '100px 0' }}>
+    <section id="positions" style={{ minHeight: '100vh', display: 'flex', alignItems: 'flex-start' }}>
       <div className="container">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          style={{ marginBottom: '3rem' }}
+          style={{ marginBottom: '2rem' }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '0.5rem' }}>
             <Users size={24} color="var(--positions-accent)" />
