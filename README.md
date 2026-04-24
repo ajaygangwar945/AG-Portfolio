@@ -118,19 +118,24 @@ AG-Portfolio /
 |  |- favicon.svg       # Website favicon
 |  |- profile_plain.png # Main profile image
 |  |- resume.pdf        # Professional resume
-|  L- images /          # UI generated assets
-|     L- banner.png     # Professional theme banner
+|  |- images /          # UI generated assets
+|  |  L- banner.png     # Professional theme banner
+|  L- positions /       # Role-specific media
+|     L- events /       # Event & recognition photos
 |
 L- src /                # Application source code
    |- App.jsx           # Main application logic & routing
    |- index.css         # Global styles & design system
    |- main.jsx          # React root entry
    |- data /            # Project content & metadata
-   │  L- projectsData.js 
+   │  |- projectsData.js 
+   │  |- positionsData.js
+   │  |- skillsData.js
+   │  L- ...
    |- components /      # Modular UI components
    │  |- common /       # Shared stylized elements
    │  |- Hero.jsx       # High-tech intro section
-   │  |- Terminal.jsx   # Interactive CLI emulator
+   │  |- TerminalPortfolio.jsx # Interactive CLI emulator
    │  |- Chatbot.jsx    # Google Gemini AI assistant
    │  L- ...            # Other section components
    L- assets /          # Project-wide images & certifications
@@ -142,7 +147,7 @@ L- src /                # Application source code
 ## 🎯 Optimization & User Experience
 
 * **Fully Responsive**: Seamlessly scales from 4K monitors to mobile devices.
-* **Minimalist Asset Management**: Zero unused images or dead code for faster delivery.
+* **Minimalist Asset Management**: Zero unused images or dead code, verified through a comprehensive asset audit for optimal performance.
 * **Dynamic Themes**: Interactive Dark/Light mode engine.
 * **Micro-Animations**: Subtle UI feedback for an immersive experience.
 * **SEO Optimized**: Semantic HTML and performance metrics optimized for search engines.

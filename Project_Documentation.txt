@@ -96,7 +96,8 @@ functionality and design.
 4. AI Integration: Setting up the Chatbot component with Gemini API to add an 
    interactive, modern layer to the portfolio.
 5. Refinement: Iterative polishing of mobile responsiveness, scroll-margin 
-   adjustments for navigation, and fine-tuning framer-motion animations.
+   adjustments for navigation, fine-tuning framer-motion animations, and 
+   conducting a comprehensive audit to remove unused assets.
 
 --------------------------------------------------------------------------------
 5. SUMMARY: WHY THESE TOOLS?
@@ -111,5 +112,5 @@ functionality and design.
   perceived quality (premium feel) of the site.
 
 ================================================================================
-Generated on: 2026-03-29
+Generated on: 2026-04-24
 ================================================================================
