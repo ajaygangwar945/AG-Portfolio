@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Terminal, Cpu, Database, Github, Mail, Code, Linkedin } from 'lucide-react';
+import { Terminal, Cpu, Database, Github, Mail, Code, Linkedin, Video } from 'lucide-react';
 import CyberCard from './common/CyberCard';
 
 const Hero = () => {
@@ -172,6 +172,11 @@ const Hero = () => {
             <a href="https://linkedin.com/in/ajaygangwar945" target="_blank" rel="noopener noreferrer">
               <button className="btn btn-primary">
                 <Linkedin size={18} /> LINKEDIN
+              </button>
+            </a>
+            <a href="https://drive.google.com/file/d/1MqpVbIYvk8nm5-8EV7MiLrViTZOpNkHA/view?usp=drive_link" target="_blank" rel="noopener noreferrer">
+              <button className="btn btn-primary" style={{ border: '1px solid var(--warning-accent)', color: 'var(--warning-accent)', background: 'transparent' }}>
+                <Video size={18} /> VIDEO CV
               </button>
             </a>
             <a href="mailto:ajaygangwar945@gmail.com">
